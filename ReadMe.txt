@@ -1,0 +1,1 @@
+nu har jag gjort lite på datestamp classen! - 2015 09 08
