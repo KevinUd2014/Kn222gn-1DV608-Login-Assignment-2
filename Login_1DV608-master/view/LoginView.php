@@ -14,6 +14,7 @@ class LoginView {
 
 	public function checkUserLogin(){
 
+		//denna kollar att man har rätt inlogingnsuppgifter!
 		if(isset($_POST[self::$name]) || isset($_POST[self::$password]))
 		{
 			return true;
