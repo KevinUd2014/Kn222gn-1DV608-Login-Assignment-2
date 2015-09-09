@@ -15,7 +15,9 @@ ini_set('display_errors', 'On');
 $v = new LoginView();
 $dtv = new DateTimeView();
 $lv = new LayoutView();
+
 $lm = new LoginModelNew();
+
 $lc = new LoginControl($v, $lm);
 
 

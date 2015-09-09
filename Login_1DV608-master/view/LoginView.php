@@ -23,11 +23,16 @@ class LoginView {
 
 	public function getUserName(){
 		echo "användarnamn är vad?";
-		return $this->name = $name;
+		$userInputName = $_POST[self::$name];
+		var_dump($_POST[self::$name]);
+		
+		return $userInputName;
 	}
-		public function getPassword(){
+	public function getPassword(){
 		echo "lösenordet är vad?";
-		return $this->password = $password;
+		$userInputPassword = $_POST[self::$password];
+
+		return $userInputPassword;
 	}
 
 
