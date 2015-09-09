@@ -10,7 +10,18 @@ class LoginView {
 	private static $keep = 'LoginView::KeepMeLoggedIn';
 	private static $messageId = 'LoginView::Message';
 
-	
+		
+
+	public function checkUserLogin(){
+
+		if(isset($_POST[self::$name]) || isset($_POST[self::$password]))
+		{
+			return true;
+		}
+	}
+
+
+
 
 	/**
 	 * Create HTTP response
