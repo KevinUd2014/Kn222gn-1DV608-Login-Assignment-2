@@ -21,6 +21,15 @@ class LoginView {
 		}
 	}
 
+	public function getUserName(){
+		echo "användarnamn är vad?";
+		return $this->name = $name;
+	}
+		public function getPassword(){
+		echo "lösenordet är vad?";
+		return $this->password = $password;
+	}
+
 
 
 
