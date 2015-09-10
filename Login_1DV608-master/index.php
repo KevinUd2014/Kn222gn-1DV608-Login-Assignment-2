@@ -22,6 +22,8 @@ $v = new LoginView($lm);
 
 $lc = new LoginControl($v, $lm);
 
+$lc->getLogin();
+
 
 
 $lv->render(false, $v, $dtv);

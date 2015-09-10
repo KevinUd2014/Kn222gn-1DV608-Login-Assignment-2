@@ -9,6 +9,7 @@ class LoginView {
 	private static $cookiePassword = 'LoginView::CookiePassword';
 	private static $keep = 'LoginView::KeepMeLoggedIn';
 	private static $messageId = 'LoginView::Message';
+	private $loginModel;
 
 		
 
@@ -29,14 +30,14 @@ class LoginView {
 	}
 
 	public function getUserName(){
-		echo "användarnamn är vad?";
-		$userInputName = $_POST[self::$name];
-		var_dump($_POST[self::$name]);
+		//echo "användarnamn är vad?";
+		//$userInputName = $_POST[self::$name];
 		
-		return $userInputName;
+		
+		return $_POST[self::$name];
 	}
 	public function getPassword(){
-		echo "lösenordet är vad?";
+		//	echo "lösenordet är vad?";
 		$userInputPassword = $_POST[self::$password];
 
 		return $userInputPassword;
@@ -55,7 +56,9 @@ class LoginView {
 	public function response() {
 		$message = '';
 
-		$message = $this->loginModel->getLogedinStatus();
+		$message = $this->loginModel->resultMessage();
+
+		//$message = $this->loginModel->trylogingin($this->getUserName(), $this->getPassword());
 		
 		$response = $this->generateLoginFormHTML($message);
 		//$response .= $this->generateLogoutButtonHTML($message);
