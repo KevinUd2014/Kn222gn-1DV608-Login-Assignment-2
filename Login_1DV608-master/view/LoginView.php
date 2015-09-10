@@ -12,10 +12,17 @@ class LoginView {
 
 		
 
-	public function checkUserLogin(){
+
+	public function __construct(LoginModelNew $loginModel){
+
+		$this->loginModel = $loginModel;
+
+	}
+
+	public function checkUserLoginPost(){
 
 		//denna kollar att man har rätt inlogingnsuppgifter!
-		if(isset($_POST[self::$name]) || isset($_POST[self::$password]))
+		if(isset($_POST[self::$login]))//kollar så att man skrivet i något i fälten!
 		{
 			return true;
 		}
@@ -47,6 +54,8 @@ class LoginView {
 	 */
 	public function response() {
 		$message = '';
+
+		$message = $this->loginModel->getLogedinStatus();
 		
 		$response = $this->generateLoginFormHTML($message);
 		//$response .= $this->generateLogoutButtonHTML($message);

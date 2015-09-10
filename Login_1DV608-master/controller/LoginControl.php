@@ -16,7 +16,23 @@
 		}
 
 		public function getLogin(){
-			$this->viewLogin = checkUserLogin();
+			
+			
+			if($this->viewLogin = checkUserLoginPost())
+			{
+				$loginUserName = $this->viewLogin->getUserName();//hämtar användarnamnet och lägger in i denna variabel
+				$password = $this->viewLogin->getPassword();//hämtar lösenordet!
+				
+				$this->checkInlogModel();//anropar funktionen!
+
+			}
+			return null;
+
+		}
+
+		public function checkInlogModel(){
+
+			$this->modelLogin->trylogingin($this->loginUserName, $this->password);  // skickar värdena som den fått till modelklassen trylogin och kollar värdena!
 		}
 
 
