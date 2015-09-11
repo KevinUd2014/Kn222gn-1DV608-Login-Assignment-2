@@ -10,8 +10,8 @@ require_once('controller/LoginControl.php');
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
-
-//CREATE OBJECTS OF THE VIEWS
+  
+//CREATE OBJECTS OF THE VIEWS  
 
 $dtv = new DateTimeView();
 $lv = new LayoutView();
@@ -25,9 +25,6 @@ $lc = new LoginControl($v, $lm);
 $lc->getLogin();
 
 //$isLogedIn = false;
-
-
-
-
-$lv->render(false, $v, $dtv);
+  
+$lv->render($lm->getLogedinStatus(), $v, $dtv); // istället för false först så anropar jag min LoginModel och funktionen getLoginstatus som kollar om man är inloggad! ifrån den! den returnerade true eller false
 

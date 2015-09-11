@@ -11,9 +11,6 @@ class LoginView {
 	private static $messageId = 'LoginView::Message';
 	private $loginModel;
 
-		
-
-
 	public function __construct(LoginModelNew $loginModel){
 
 		$this->loginModel = $loginModel;
@@ -23,7 +20,7 @@ class LoginView {
 	public function checkUserLoginPost(){
 
 		//denna kollar att man har rätt inlogingnsuppgifter!
-		if(isset($_POST[self::$login]))//kollar så att man skrivet i något i fälten!
+		if(isset($_POST[self::$login]) || isset($_POST[self::$name]) || isset($_POST[self::$password]))//kollar så att man skrivet i något i fälten!
 		{
 			return true;
 		}
@@ -54,14 +51,21 @@ class LoginView {
 	 * @return  void BUT writes to standard output and cookies!
 	 */
 	public function response() {
-		$message = '';
+		$message = '';//skapar en tom sträng
 
-		$message = $this->loginModel->resultMessage();
+		$message = $this->loginModel->resultMessage();//anropar funktionen!
+
+		$response = "";//skapar bara en tom sträng
 
 		//$message = $this->loginModel->trylogingin($this->getUserName(), $this->getPassword());
-		
-		$response = $this->generateLoginFormHTML($message);
-		//$response .= $this->generateLogoutButtonHTML($message);
+		if($this->loginModel->getLogedinStatus()){
+
+			$response .= $this->generateLogoutButtonHTML($message);//anropar denna funktion om man nu lyckas logga in
+		}
+		else{
+
+			$response = $this->generateLoginFormHTML($message);//failar man så kommer detta visas! igen!  
+		}
 		return $response;
 	}
 

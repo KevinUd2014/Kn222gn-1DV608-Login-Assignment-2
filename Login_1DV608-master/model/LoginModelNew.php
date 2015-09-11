@@ -14,38 +14,41 @@
 
 
 
-		public function trylogingin($Username, $Password){
+		public function trylogingin($Username, $Password){ //denna anropas t.ex. i index!
 
 
-			//$this->logedinStatus = false; //vet ej opm denna
+			$this->logedinStatus = false; //vet ej opm denna
 			$this->usernameInput = trim($Username);// dessa två kommer ta bort alla onödiga blankspace osv. ifårn mina strängar!
 			$this->userPasswordInput = trim($Password);
 
 			if ($this->usernameInput === "") {//här ska jag implementera de olika kraven man får t.ex. inte skriva i fält som är tomma!
 			
 				$this->actionMessage = "Username is missing";
+				$this->logedinStatus = false;
 			
 			}//här ska jag implementera de olika kraven man får t.ex. inte skriva i fält som är tomma!
 			else if ($this->userPasswordInput === "") {
  				
 				$this->actionMessage = "Password is missing";
+				$this->logedinStatus = false;
 
 			}
 			else if($this->usernameInput === self::$fullUserName && $this->userPasswordInput !==  self::$fullPassword
 				|| $this->usernameInput !== self::$fullUserName && $this->userPasswordInput === self::$fullPassword)
 			{//hade denna uppdelad i två else if satser men satte ihop dem men vet ej om det går att göra bättre!
 				$this->actionMessage = "Wrong name or password";
+				$this->logedinStatus = false;
 			}
 			else if($this->usernameInput === self::$fullUserName && $this->userPasswordInput === self::$fullPassword){
 
 				$this->actionMessage = "Welcome";
-				$this->logedinStatus = true;
+				$this->logedinStatus = true;// denna ska skicka så att man kommer vidare till en login skärm!
 			}
 		}
 
-		public function getLogedinStatus(){
-
-			return $this->logedinStatus;//skickar tillbaka vilken status man har om man är inlogad eller inte!
+		public function getLogedinStatus(){  
+  
+			return $this->logedinStatus;//skickar tillbaka vilken status man har om man är inlogad eller inte! true eller false!
 		}
 		public function resultMessage(){//denna anropar jag för att få in felmeddelandet till message i index!
 
