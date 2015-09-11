@@ -18,7 +18,7 @@
 		public function getLogin(){
 			
 			
-			if($this->viewLogin->checkUserLoginPost())
+			if($this->viewLogin->checkUserLoginPost())//om användaren postar i view så ska denna köras!
 			{
 				$this->loginUserName = $this->viewLogin->getUserName();//hämtar användarnamnet och lägger in i denna variabel
 				$this->password = $this->viewLogin->getPassword();//hämtar lösenordet!

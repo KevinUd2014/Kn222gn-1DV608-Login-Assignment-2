@@ -24,6 +24,9 @@ $lc = new LoginControl($v, $lm);
 
 $lc->getLogin();
 
+//$isLogedIn = false;
+
+
 
 
 $lv->render(false, $v, $dtv);
