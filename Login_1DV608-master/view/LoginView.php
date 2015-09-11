@@ -34,7 +34,7 @@ class LoginView {
 		//$userInputName = $_POST[self::$name];
 		
 		
-		return $_POST[self::$name];
+		return $_POST[self::$name];//man kunde tydligen göra på båda sätten!
 	}
 	public function getPassword(){
 		//	echo "lösenordet är vad?";

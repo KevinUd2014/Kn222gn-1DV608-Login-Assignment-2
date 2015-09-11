@@ -32,6 +32,7 @@
 
 		public function checkInlogModel(){
 
+			
 			$this->modelLogin->trylogingin($this->loginUserName, $this->password);  // skickar värdena som den fått till modelklassen trylogin och kollar värdena!
 		}
 

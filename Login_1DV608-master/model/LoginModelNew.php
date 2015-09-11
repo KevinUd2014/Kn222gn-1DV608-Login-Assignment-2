@@ -7,15 +7,12 @@
 		private $usernameInput;
 		private $userPasswordInput;
 		private $logedinStatus;
-		private $errorMessage;
+		private $actionMessage;
 
-		public $fullUserName = "Admin";
-		public $fullPassword = "Password";
+		public static $fullUserName = "Admin";
+		public static $fullPassword = "Password";
 
-		public function getLogedinStatus(){
 
-			return $this->logedinStatus;//skickar tillbaka vilken status man har om man är inlogad eller inte!
-		}
 
 		public function trylogingin($Username, $Password){
 
@@ -26,21 +23,33 @@
 
 			if ($this->usernameInput === "") {//här ska jag implementera de olika kraven man får t.ex. inte skriva i fält som är tomma!
 			
-				$this->errorMessage = "Username is missing";
+				$this->actionMessage = "Username is missing";
 			
 			}//här ska jag implementera de olika kraven man får t.ex. inte skriva i fält som är tomma!
 			else if ($this->userPasswordInput === "") {
- 
-				$this->errorMessage = "Password is missing";
+ 				
+				$this->actionMessage = "Password is missing";
 
 			}
-			
-			
+			else if($this->usernameInput === self::$fullUserName && $this->userPasswordInput !==  self::$fullPassword
+				|| $this->usernameInput !== self::$fullUserName && $this->userPasswordInput === self::$fullPassword)
+			{//hade denna uppdelad i två else if satser men satte ihop dem men vet ej om det går att göra bättre!
+				$this->actionMessage = "Wrong name or password";
+			}
+			else if($this->usernameInput === self::$fullUserName && $this->userPasswordInput === self::$fullPassword){
+
+				$this->actionMessage = "Welcome";
+				$this->logedinStatus = true;
+			}
 		}
 
+		public function getLogedinStatus(){
+
+			return $this->logedinStatus;//skickar tillbaka vilken status man har om man är inlogad eller inte!
+		}
 		public function resultMessage(){//denna anropar jag för att få in felmeddelandet till message i index!
 
-			return $this->errorMessage; 
+			return $this->actionMessage; 
 		}
 		
 
