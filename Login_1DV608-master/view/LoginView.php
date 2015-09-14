@@ -10,6 +10,7 @@ class LoginView {
 	private static $keep = 'LoginView::KeepMeLoggedIn';
 	private static $messageId = 'LoginView::Message';
 	private $loginModel;
+	private static $previousName;
 
 	public function __construct(LoginModelNew $loginModel){
 
@@ -22,6 +23,7 @@ class LoginView {
 		//denna kollar att man har rätt inlogingnsuppgifter!
 		if(isset($_POST[self::$login]))//kollar så att man skrivet i något i fälten!
 		{
+			self::$previousName = $_POST[self::$name];
 			return true;
 		}
 	}
@@ -39,10 +41,6 @@ class LoginView {
 
 		return $userInputPassword;
 	}
-
-
-
-
 	/**
 	 * Create HTTP response
 	 *
@@ -53,7 +51,7 @@ class LoginView {
 	public function response() {
 		$message = '';//skapar en tom sträng
 
-		$message = $this->loginModel->resultMessage();//anropar funktionen!
+		$message = $this->loginModel->loginResultMessage();//anropar funktionen!
 
 		$response = "";//skapar bara en tom sträng
 
@@ -96,7 +94,7 @@ class LoginView {
 					<p id="' . self::$messageId . '">' . $message . '</p>
 					
 					<label for="' . self::$name . '">Username :</label>
-					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="" />
+					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="'. self::$previousName .'" />
 
 					<label for="' . self::$password . '">Password :</label>
 					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />

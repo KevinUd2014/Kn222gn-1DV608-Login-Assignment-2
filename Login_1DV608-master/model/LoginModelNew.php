@@ -1,5 +1,5 @@
 <?php
-
+	session_start();
 	class LoginModelNew{
 		//fick döpa den till new eftersom jag skapade mappen i fel mapp först!
 		//ska anropa modelen och få tilbaka svar som i sin tur skickas till view!
@@ -46,13 +46,33 @@
 			}
 		}
 
-		public function getLogedinStatus(){  
+		public function getLogedinStatus(){
   
 			return $this->logedinStatus;//skickar tillbaka vilken status man har om man är inlogad eller inte! true eller false!
 		}
-		public function resultMessage(){//denna anropar jag för att få in felmeddelandet till message i index!
+		public function loginResultMessage(){//denna anropar jag för att få in felmeddelandet till message i index!
 
 			return $this->actionMessage; 
+		}
+
+		public function logoutMessage(){
+			$this->logedinStatus = false;
+			$this->actionMessage = "Bye bye!";
+		}
+
+		public function checkLoginSession(){
+			
+			if(isset ($_SESSION["checkLoginSession"])){
+
+				if($this->logedinStatus){
+
+					$_SESSION["checkLoginSession"] = true;
+
+				}
+				return $_SESSION["checkLoginSession"];
+
+			}
+
 		}
 		
 

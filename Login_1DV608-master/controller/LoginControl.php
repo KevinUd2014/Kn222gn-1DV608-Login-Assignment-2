@@ -23,17 +23,19 @@
 				$this->loginUserName = $this->viewLogin->getUserName();//hämtar användarnamnet och lägger in i denna variabel
 				$this->password = $this->viewLogin->getPassword();//hämtar lösenordet!
 				
-				return $this->checkInlogModel();//anropar funktionen!
+
+				return $this->modelLogin->trylogingin($this->loginUserName, $this->password);
+				//return $this->checkInlogModel();//anropar funktionen!//denna är onödig när jag kan göra på övre sättet!
 			}
 			//return false;//vet ej om denna behövs!
 
 		}
 
-		public function checkInlogModel(){//skapar denna då jag måste skicka in parametrar till trylogingin!
+		//public function checkInlogModel(){//skapar denna då jag måste skicka in parametrar till trylogingin!
 
 			
-			$this->modelLogin->trylogingin($this->loginUserName, $this->password);  // skickar värdena som den fått till modelklassen trylogin och kollar värdena!
-		}
+		//	$this->modelLogin->trylogingin($this->loginUserName, $this->password);  // skickar värdena som den fått till modelklassen trylogin och kollar värdena!
+		//}
 
 
 
