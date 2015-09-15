@@ -74,6 +74,13 @@ class LoginView {
 		return $response;
 	}
 
+	public funcion actionMessages(){
+
+		if($this->checkUserLoginPost(){
+
+		}
+	}
+
 	/**
 	* Generate HTML code on the output buffer for the logout button
 	* @param $message, String output message
