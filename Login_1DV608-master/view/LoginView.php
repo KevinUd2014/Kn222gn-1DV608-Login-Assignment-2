@@ -41,6 +41,13 @@ class LoginView {
 
 		return $userInputPassword;
 	}
+
+	public function didUserLogout(){
+		if(isset($_POST[self::$logout]))
+		{
+			return true;
+		}
+	}
 	/**
 	 * Create HTTP response
 	 *

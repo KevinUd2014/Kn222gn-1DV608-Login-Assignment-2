@@ -27,6 +27,10 @@
 				return $this->modelLogin->trylogingin($this->loginUserName, $this->password);
 				//return $this->checkInlogModel();//anropar funktionen!//denna är onödig när jag kan göra på övre sättet!
 			}
+			else if($this->viewLogin->didUserLogout())//denna gör detta om användaren postar en logout
+			{
+				$this->modelLogin->logoutMessage();//då sätter vi att logoutmessage kommer skrivas ut!
+			}
 			//return false;//vet ej om denna behövs!
 
 		}

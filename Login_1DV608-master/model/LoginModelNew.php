@@ -13,6 +13,13 @@
 		public static $fullPassword = "Password";
 
 
+		public function __construct()
+		{
+			if(!isset($_SESSION['isLoginSession']))
+			{
+				$_SESSION['isLoginSession'] = false;
+			}
+		}
 
 		public function trylogingin($Username, $Password){ //denna anropas t.ex. i index!
 
@@ -41,9 +48,20 @@
 			}
 			else if($this->usernameInput === self::$fullUserName && $this->userPasswordInput === self::$fullPassword){
 
-				$this->actionMessage = "Welcome";
+				if($_SESSION['isLoginSession']){
+
+					$this->actionMessage = "";
+				}
+				else{
+
+					$this->actionMessage = "Welcome";
+				}
+
+				$_SESSION['isLoginSession'] = true;
 				$this->logedinStatus = true;// denna ska skicka så att man kommer vidare till en login skärm!
 			}
+			//return false;
+			//
 		}
 
 		public function getLogedinStatus(){
@@ -55,21 +73,32 @@
 			return $this->actionMessage; 
 		}
 
-		public function logoutMessage(){
-			$this->logedinStatus = false;
-			$this->actionMessage = "Bye bye!";
-		}
+		public function logoutMessage(){ // denna ska skriva ut bye bye om man loggar ut!
+			
+			if($_SESSION["isLoginSession"] === false){//om nu checklogin är true så kommer bye bye skrivas ut
+				
+				$this->actionMessage = "";
+				
+			}
+			else{
 
+				$this->actionMessage = "Bye bye!";
+
+			}
+
+			$_SESSION["isLoginSession"] = false;//sätter sessionen till false!
+			session_destroy();//tar bort sessionen
+		}
 		public function checkLoginSession(){
 			
-			if(isset ($_SESSION["checkLoginSession"])){
+			if(isset ($_SESSION["isLoginSession"])){
 
-				if($this->logedinStatus){
+				if($_SESSION["isLoginSession"]){
 
-					$_SESSION["checkLoginSession"] = true;
+					return $_SESSION["isLoginSession"];
 
 				}
-				return $_SESSION["checkLoginSession"];
+				return false;
 
 			}
 

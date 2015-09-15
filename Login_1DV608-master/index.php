@@ -26,5 +26,5 @@ $lc->getLogin();
 
 //$isLogedIn = false;
   
-$lv->render($lm->getLogedinStatus(), $v, $dtv); // istället för false först så anropar jag min LoginModel och funktionen getLoginstatus som kollar om man är inloggad! ifrån den! den returnerade true eller false
+$lv->render($lm->checkLoginSession(), $v, $dtv); // istället för false först så anropar jag min LoginModel och funktionen getLoginstatus som kollar om man är inloggad! ifrån den! den returnerade true eller false
 
