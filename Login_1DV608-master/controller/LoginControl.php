@@ -29,7 +29,7 @@
 			}
 			else if($this->viewLogin->didUserLogout())//denna gör detta om användaren postar en logout
 			{
-				$this->modelLogin->logoutMessage();//då sätter vi att logoutmessage kommer skrivas ut!
+				$this->modelLogin->logoutModel();//då sätter vi att logoutmessage kommer skrivas ut!
 			}
 			//return false;//vet ej om denna behövs!
 

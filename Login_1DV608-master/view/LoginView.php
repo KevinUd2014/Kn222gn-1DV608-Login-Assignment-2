@@ -11,10 +11,16 @@ class LoginView {
 	private static $messageId = 'LoginView::Message';
 	private $loginModel;
 	private static $previousName;
+	private $message;
 
 	public function __construct(LoginModelNew $loginModel){
 
 		$this->loginModel = $loginModel;
+
+		if(!isset($_SESSION["successMessage"]))
+		{
+			$_SESSION["successMessage"] = true;
+		}
 
 	}
 
@@ -31,15 +37,18 @@ class LoginView {
 	public function getUserName(){
 		//echo "användarnamn är vad?";
 		//$userInputName = $_POST[self::$name];
+		if(isset($_POST[self::$name])){
 		
+			return $_POST[self::$name];//man kunde tydligen göra på båda sätten!
 		
-		return $_POST[self::$name];//man kunde tydligen göra på båda sätten!
+		}
 	}
 	public function getPassword(){
 		//	echo "lösenordet är vad?";
-		$userInputPassword = $_POST[self::$password];
+		if(isset($_POST[self::$password])){
 
-		return $userInputPassword;
+			return $_POST[self::$password];
+		}
 	}
 
 	public function didUserLogout(){
@@ -48,6 +57,42 @@ class LoginView {
 			return true;
 		}
 	}
+
+
+	public function actionMessages(){// fick lägga till mina if och else if satset här istället!
+		$this->message = "";//tom message
+
+		if($this->checkUserLoginPost())
+		{
+
+			if($this->getUserName() == "")
+			{
+				$this->message = "Username is missing";
+			} 
+			
+			else if($this->getPassword() == "")
+			{
+				$this->message = "Password is missing";
+			}
+			else if (!$this->loginModel->checkLoginSession()){
+				$this->message = "Wrong name or password";
+			}
+			
+			else if($this->loginModel->checkLoginSession() && $_SESSION["successMessage"])//man måste ha båda korrekta och även 
+			{
+				$_SESSION["successMessage"] = false;
+				$this->message = "Welcome";
+			}
+		}
+		else if ($this->didUserLogout() && !$_SESSION["successMessage"])
+		{
+			$_SESSION["successMessage"] = true;
+			$this->message = "Bye bye!";
+			session_destroy();
+		}
+	}
+
+
 	/**
 	 * Create HTTP response
 	 *
@@ -56,30 +101,26 @@ class LoginView {
 	 * @return  void BUT writes to standard output and cookies!
 	 */
 	public function response() {
-		$message = '';//skapar en tom sträng
+		
 
-		$message = $this->loginModel->loginResultMessage();//anropar funktionen!
+		$this->actionMessages();//anropar min funktion!
+
+		//$message = $this->loginModel->loginResultMessage();//anropar funktionen!
 
 		$response = "";//skapar bara en tom sträng
 
 		//$message = $this->loginModel->trylogingin($this->getUserName(), $this->getPassword());
-		if($this->loginModel->getLogedinStatus()){
+		if($this->loginModel->checkLoginSession()){
 
-			$response .= $this->generateLogoutButtonHTML($message);//anropar denna funktion om man nu lyckas logga in
+			$response = $this->generateLogoutButtonHTML($this->message);//anropar denna funktion om man nu lyckas logga in
 		}
 		else{
 
-			$response = $this->generateLoginFormHTML($message);//failar man så kommer detta visas! igen!  
+			$response .= $this->generateLoginFormHTML($this->message);//failar man så kommer detta visas! igen!  
 		}
 		return $response;
 	}
 
-	public funcion actionMessages(){
-
-		if($this->checkUserLoginPost(){
-
-		}
-	}
 
 	/**
 	* Generate HTML code on the output buffer for the logout button
