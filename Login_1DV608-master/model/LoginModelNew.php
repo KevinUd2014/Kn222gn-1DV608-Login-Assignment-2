@@ -27,7 +27,7 @@
 			$this->logedinStatus = false; //vet ej opm denna
 			$this->usernameInput = trim($Username);// dessa två kommer ta bort alla onödiga blankspace osv. ifårn mina strängar!
 			$this->userPasswordInput = trim($Password);
-
+			
 			if ($this->usernameInput === "") {//här ska jag implementera de olika kraven man får t.ex. inte skriva i fält som är tomma!
 			
 				$this->actionMessage = "Username is missing";
@@ -74,20 +74,19 @@
 		}
 
 		public function logoutMessage(){ // denna ska skriva ut bye bye om man loggar ut!
-			
+
 			if($_SESSION["isLoginSession"] === false){//om nu checklogin är true så kommer bye bye skrivas ut
 				
 				$this->actionMessage = "";
 				
 			}
 			else{
-
 				$this->actionMessage = "Bye bye!";
-
 			}
-
 			$_SESSION["isLoginSession"] = false;//sätter sessionen till false!
 			session_destroy();//tar bort sessionen
+			//$_SESSION["isLoginSession"] = false;//sätter sessionen till false! var tvungen sätta till false för att destroy!
+			//session_destroy();//tar bort sessionen
 		}
 		public function checkLoginSession(){
 			
