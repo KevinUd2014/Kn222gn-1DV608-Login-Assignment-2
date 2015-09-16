@@ -55,9 +55,11 @@ class LoginView {
 	}
 	public function welcomeMessage(){
 		self::$welcomeByeMessage = "Welcome";
+		$this->actionMessages(self::$welcomeByeMessage);
 	}
 	public function byeMessage(){
 		self::$welcomeByeMessage = "Bye bye!";
+		$this->actionMessages(self::$welcomeByeMessage);
 	}
 
 	 public function actionMessages($message){// fick lägga till mina if och else if satset här istället!
@@ -108,7 +110,7 @@ class LoginView {
 		
 
 		//$this->actionMessages();//anropar min funktion!
-		$message = self::$welcomeByeMessage;
+		//$this->message = self::$welcomeByeMessage;
 		//$message = $this->loginModel->loginResultMessage();//anropar funktionen!
 
 		$response = "";//skapar bara en tom sträng
@@ -116,11 +118,11 @@ class LoginView {
 		//$message = $this->loginModel->trylogingin($this->getUserName(), $this->getPassword());
 		if($this->loginModel->checkLoginSession()){
 
-			$response = $this->generateLogoutButtonHTML($message);//anropar denna funktion om man nu lyckas logga in
+			$response = $this->generateLogoutButtonHTML($this->message);//anropar denna funktion om man nu lyckas logga in
 		}
 		else{
 
-			$response .= $this->generateLoginFormHTML($message);//failar man så kommer detta visas! igen!  
+			$response .= $this->generateLoginFormHTML($this->message);//failar man så kommer detta visas! igen!  
 		}
 		return $response;
 	}

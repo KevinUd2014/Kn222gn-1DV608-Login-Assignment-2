@@ -49,7 +49,7 @@
 			else if($this->usernameInput == self::$fullUserName && $this->userPasswordInput == self::$fullPassword){
 				if($_SESSION['isLoginSession']){
 
-					throw new EXCEPTION ("");
+					throw new EXCEPTION ();
 						//$this->actionMessage = "";
 				}
 				else{
@@ -82,12 +82,12 @@
 
 			if(!$_SESSION['isLoginSession']){
 
-				throw new EXCEPTION ("");
+				throw new EXCEPTION ();
 						//$this->actionMessage = "";
 			}
 			else{
 
-				$_SESSION['isLoginSession'] = true;
+				$_SESSION["isLoginSession"] = false;
 					//throw new EXCEPTION ("Welcome");
 					//$this->actionMessage = "Welcome";
 			}
@@ -99,7 +99,7 @@
 			// else{
 			// 	$this->actionMessage = "Bye bye!";
 			// }
-			$_SESSION["isLoginSession"] = false;//sätter sessionen till false!
+			//$_SESSION["isLoginSession"] = false;//sätter sessionen till false!
 			//session_destroy();//tar bort sessionen
 			//$_SESSION["isLoginSession"] = false;//sätter sessionen till false! var tvungen sätta till false för att destroy!
 			//session_destroy();//tar bort sessionen

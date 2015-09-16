@@ -26,6 +26,7 @@
 				
 
 					$this->modelLogin->trylogingin($this->loginUserName, $this->password);
+
 					$this->viewLogin->welcomeMessage();
 					/**
 					*	Tell view to show logout message
@@ -40,6 +41,7 @@
 			{
 				try{
 					$this->modelLogin->logoutModel();//då sätter vi att logoutmessage kommer skrivas ut!
+					
 					$this->viewLogin->byeMessage();
 					/**
 					*	Tell view to show logout message
