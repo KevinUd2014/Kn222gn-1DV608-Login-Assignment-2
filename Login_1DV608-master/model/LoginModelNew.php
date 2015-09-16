@@ -1,5 +1,5 @@
 <?php
-	session_start();
+
 	class LoginModelNew{
 		//fick döpa den till new eftersom jag skapade mappen i fel mapp först!
 		//ska anropa modelen och få tilbaka svar som i sin tur skickas till view!
@@ -28,37 +28,41 @@
 			$this->usernameInput = trim($Username);// dessa två kommer ta bort alla onödiga blankspace osv. ifårn mina strängar!
 			$this->userPasswordInput = trim($Password);
 			
-			// if ($this->usernameInput === "") {//här ska jag implementera de olika kraven man får t.ex. inte skriva i fält som är tomma!
+			if ($this->usernameInput === "") {//här ska jag implementera de olika kraven man får t.ex. inte skriva i fält som är tomma!
 			
-			// 	$this->actionMessage = "Username is missing";
-			// 	//$this->logedinStatus = false;
+			 	throw new EXCEPTION ("Username is missing");
+			 	//$this->logedinStatus = false;
 			
-			// }//här ska jag implementera de olika kraven man får t.ex. inte skriva i fält som är tomma!
-			// else if ($this->userPasswordInput === "") {
+			}//här ska jag implementera de olika kraven man får t.ex. inte skriva i fält som är tomma!
+			else if ($this->userPasswordInput === "") {
  				
-			// 	$this->actionMessage = "Password is missing";
-			// 	//$this->logedinStatus = false;
+			 	throw new EXCEPTION ("Password is missing");
+			 	//$this->logedinStatus = false;
 
-			// }
-			// else if($this->usernameInput === self::$fullUserName && $this->userPasswordInput !==  self::$fullPassword
-			// 	|| $this->usernameInput !== self::$fullUserName && $this->userPasswordInput === self::$fullPassword)
-			// {//hade denna uppdelad i två else if satser men satte ihop dem men vet ej om det går att göra bättre!
-			// 	$this->actionMessage = "Wrong name or password";
-			// 	//$this->logedinStatus = false;
-			// }
-			if($this->usernameInput == self::$fullUserName && $this->userPasswordInput == self::$fullPassword){
-
-				$_SESSION['isLoginSession'] = true;
-					//$this->actionMessage = "";
 			}
-			else{
+			else if($this->usernameInput !== self::$fullUserName || $this->userPasswordInput !==  self::$fullPassword){// fick hjälp med denna av Andreas! jag hade en överkomplicerad!
+			//hade denna uppdelad i två else if satser men satte ihop dem men vet ej om det går att göra bättre!
 
-				$_SESSION['isLoginSession'] = false;
+			 	throw new EXCEPTION ("Wrong name or password");
+			 	//$this->logedinStatus = false;
+			}
+			else if($this->usernameInput == self::$fullUserName && $this->userPasswordInput == self::$fullPassword){
+				if($_SESSION['isLoginSession']){
+
+					throw new EXCEPTION ("");
+						//$this->actionMessage = "";
+				}
+				else{
+
+					$_SESSION['isLoginSession'] = true;
+					//throw new EXCEPTION ("Welcome");
 					//$this->actionMessage = "Welcome";
-			}
+				}
+				
 
 				//$_SESSION['isLoginSession'] = true;
 				//$this->logedinStatus = true;// denna ska skicka så att man kommer vidare till en login skärm!
+			}
 		}
 			//return false;
 			//
@@ -75,11 +79,23 @@
 
 		public function logoutModel(){ // denna ska skriva ut bye bye om man loggar ut!
 
+
+			if(!$_SESSION['isLoginSession']){
+
+				throw new EXCEPTION ("");
+						//$this->actionMessage = "";
+			}
+			else{
+
+				$_SESSION['isLoginSession'] = true;
+					//throw new EXCEPTION ("Welcome");
+					//$this->actionMessage = "Welcome";
+			}
 			// if($_SESSION["isLoginSession"] === false){//om nu checklogin är true så kommer bye bye skrivas ut
 				
 			// 	$this->actionMessage = "";
 				
-			// }
+			// }// TODO: dessa är sånt jag kan ta bort efter jag frågat på handledningen!
 			// else{
 			// 	$this->actionMessage = "Bye bye!";
 			// }

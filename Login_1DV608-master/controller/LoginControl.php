@@ -20,16 +20,34 @@
 			
 			if($this->viewLogin->checkUserLoginPost())//om användaren postar i view så ska denna köras!
 			{
-				$this->loginUserName = $this->viewLogin->getUserName();//hämtar användarnamnet och lägger in i denna variabel
-				$this->password = $this->viewLogin->getPassword();//hämtar lösenordet!
+				try{
+					$this->loginUserName = $this->viewLogin->getUserName();//hämtar användarnamnet och lägger in i denna variabel
+					$this->password = $this->viewLogin->getPassword();//hämtar lösenordet!
 				
 
-				return $this->modelLogin->trylogingin($this->loginUserName, $this->password);
+					$this->modelLogin->trylogingin($this->loginUserName, $this->password);
+					$this->viewLogin->welcomeMessage();
+					/**
+					*	Tell view to show logout message
+					*/
+				}
+				catch(EXCEPTION $exceptions){  // kastar ett exception istället!
+					$this->viewLogin->actionMessages($exceptions->getMessage());
+				}
 				//return $this->checkInlogModel();//anropar funktionen!//denna är onödig när jag kan göra på övre sättet!
 			}
 			else if($this->viewLogin->didUserLogout())//denna gör detta om användaren postar en logout
 			{
-				$this->modelLogin->logoutModel();//då sätter vi att logoutmessage kommer skrivas ut!
+				try{
+					$this->modelLogin->logoutModel();//då sätter vi att logoutmessage kommer skrivas ut!
+					$this->viewLogin->byeMessage();
+					/**
+					*	Tell view to show logout message
+					*/
+				}
+				catch(EXCEPTION $exceptions){
+					$this->viewLogin->actionMessages($exceptions->getMessage());
+				}
 			}
 			//return false;//vet ej om denna behövs!
 

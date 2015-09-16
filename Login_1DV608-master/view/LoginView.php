@@ -12,15 +12,11 @@ class LoginView {
 	private $loginModel;
 	private static $previousName;
 	private $message;
+	private static $welcomeByeMessage = "";
 
 	public function __construct(LoginModelNew $loginModel){
 
 		$this->loginModel = $loginModel;
-
-		if(!isset($_SESSION["successMessage"]))
-		{
-			$_SESSION["successMessage"] = true;
-		}
 
 	}
 
@@ -57,40 +53,48 @@ class LoginView {
 			return true;
 		}
 	}
-
-
-	public function actionMessages(){// fick lägga till mina if och else if satset här istället!
-		$this->message = "";//tom message
-
-		if($this->checkUserLoginPost())
-		{
-
-			if($this->getUserName() == "")
-			{
-				$this->message = "Username is missing";
-			} 
-			
-			else if($this->getPassword() == "")
-			{
-				$this->message = "Password is missing";
-			}
-			else if (!$this->loginModel->checkLoginSession()){
-				$this->message = "Wrong name or password";
-			}
-			
-			else if($this->loginModel->checkLoginSession() && $_SESSION["successMessage"])//man måste ha båda korrekta och även 
-			{
-				$_SESSION["successMessage"] = false;
-				$this->message = "Welcome";
-			}
-		}
-		else if ($this->didUserLogout() && !$_SESSION["successMessage"])
-		{
-			$_SESSION["successMessage"] = true;
-			$this->message = "Bye bye!";
-			session_destroy();
-		}
+	public function welcomeMessage(){
+		self::$welcomeByeMessage = "Welcome";
 	}
+	public function byeMessage(){
+		self::$welcomeByeMessage = "Bye bye!";
+	}
+
+	 public function actionMessages($message){// fick lägga till mina if och else if satset här istället!
+	 	//$message = "";
+	
+		$this->message = $message;//tom message
+
+	// 	if($this->checkUserLoginPost())
+	// 	{
+
+	// 		if($this->getUserName() == "")
+	// 		{
+	// 			$this->message = "Username is missing";
+	// 		} 
+			
+	// 		else if($this->getPassword() == "")
+	// 		{
+	// 			$this->message = "Password is missing";
+	// 		}
+	// 		else if (!$this->loginModel->checkLoginSession()){
+	// 			$this->message = "Wrong name or password";
+	// 		}
+			
+	// 		else if($this->loginModel->checkLoginSession() && $_SESSION["successMessage"])//man måste ha båda korrekta och även 
+	// 		{
+	// 			$_SESSION["successMessage"] = false;
+	// 			$this->message = "Welcome";
+	// 		}
+	// 		else if ($this->didUserLogout() && !$_SESSION["successMessage"]) //flytta denna utanför if!
+	// 		{
+	// 			$_SESSION["successMessage"] = true;
+	// 			$this->message = "Bye bye!";
+	// 			session_destroy();
+	// 		}
+		}
+
+	// }
 
 
 	/**
@@ -103,8 +107,8 @@ class LoginView {
 	public function response() {
 		
 
-		$this->actionMessages();//anropar min funktion!
-
+		//$this->actionMessages();//anropar min funktion!
+		$message = self::$welcomeByeMessage;
 		//$message = $this->loginModel->loginResultMessage();//anropar funktionen!
 
 		$response = "";//skapar bara en tom sträng
@@ -112,11 +116,11 @@ class LoginView {
 		//$message = $this->loginModel->trylogingin($this->getUserName(), $this->getPassword());
 		if($this->loginModel->checkLoginSession()){
 
-			$response = $this->generateLogoutButtonHTML($this->message);//anropar denna funktion om man nu lyckas logga in
+			$response = $this->generateLogoutButtonHTML($message);//anropar denna funktion om man nu lyckas logga in
 		}
 		else{
 
-			$response .= $this->generateLoginFormHTML($this->message);//failar man så kommer detta visas! igen!  
+			$response .= $this->generateLoginFormHTML($message);//failar man så kommer detta visas! igen!  
 		}
 		return $response;
 	}

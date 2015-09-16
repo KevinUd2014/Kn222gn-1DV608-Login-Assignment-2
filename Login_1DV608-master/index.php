@@ -1,5 +1,5 @@
 <?php
-
+	session_start();  //är denna i Index så lever den i hela projektet!
 //INCLUDE THE FILES NEEDED...
 require_once('view/LoginView.php');
 require_once('view/DateTimeView.php');
