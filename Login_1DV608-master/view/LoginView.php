@@ -14,6 +14,12 @@ class LoginView {
 	private $message;
 	private static $welcomeByeMessage = "";
 
+	private static $registerLoginSite = "LoginView::register";
+	private static $register = "LoginView::register";
+	private static $regName = "LoginView::regUsername";
+	private static $regPassword = "LoginView::regPassword";
+	private static $regRePassword = "LoginView::regRePassword";
+
 	public function __construct(LoginModelNew $loginModel){
 
 		$this->loginModel = $loginModel;
@@ -26,6 +32,15 @@ class LoginView {
 		if(isset($_POST[self::$login]))//kollar så att man skrivet i något i fälten!
 		{
 			self::$previousName = $_POST[self::$name];
+			return true;
+		}
+	}
+	public function checkUserRegisterPost(){
+
+		//denna kollar att man har rätt inlogingnsuppgifter!
+		if(isset($_POST[self::$register]))//kollar så att man skrivet i något i fälten!
+		{
+			self::$previousName = $_POST[self::$regName];
 			return true;
 		}
 	}
@@ -114,17 +129,50 @@ class LoginView {
 		//$message = $this->loginModel->loginResultMessage();//anropar funktionen!
 
 		$response = "";//skapar bara en tom sträng
-
+		$response = $this->generateRegistrationButton();
 		//$message = $this->loginModel->trylogingin($this->getUserName(), $this->getPassword());
-		if($this->loginModel->checkLoginSession()){
-
-			$response = $this->generateLogoutButtonHTML($this->message);//anropar denna funktion om man nu lyckas logga in
+		if(isset($_POST[self::$register])){
+			$response = $this->generateRegistrationFormHTML();
 		}
 		else{
+			if($this->loginModel->checkLoginSession()){
 
-			$response .= $this->generateLoginFormHTML($this->message);//failar man så kommer detta visas! igen!  
+				$response = $this->generateLogoutButtonHTML($this->message);//anropar denna funktion om man nu lyckas logga in
+			}
+			else{
+
+				$response .= $this->generateLoginFormHTML($this->message);//failar man så kommer detta visas! igen!  
+			}
 		}
 		return $response;
+	}
+
+	private function generateRegistrationButton(){
+		return '<form  method="post" >
+					<p id="regButton"></p>
+					<input type="submit" name="' . self::$registerLoginSite . '" value="Registration Page"/>
+				</form>';
+	}
+
+	private function generateRegistrationFormHTML() {
+		return '
+			<form method="post" > 
+				<fieldset>
+					<legend>Register - enter Username and password</legend>
+					
+					<label for="' . self::$regName . '">Username :</label>
+					<input type="text" id="' . self::$regName . '" name="' . self::$regName . '"  />
+
+					<label for="' . self::$regPassword . '">Password :</label>
+					<input type="password" id="' . self::$regPassword . '" name="' . self::$regPassword . '" />
+
+					<label for="' . self::$regRePassword . '">Repeat Password :</label>
+					<input type="password" id="' . self::$regRePassword . '" name="' . self::$regRePassword . '" />
+
+					<input type="submit" name="' . self::$register . '" value="register" />
+				</fieldset>
+			</form>
+		';
 	}
 
 
