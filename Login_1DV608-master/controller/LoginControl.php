@@ -35,7 +35,6 @@
 				catch(EXCEPTION $exceptions){  // kastar ett exception istället!
 					$this->viewLogin->actionMessages($exceptions->getMessage());
 				}
-				//return $this->checkInlogModel();//anropar funktionen!//denna är onödig när jag kan göra på övre sättet!
 			}
 			else if($this->viewLogin->didUserLogout())//denna gör detta om användaren postar en logout
 			{
@@ -51,18 +50,7 @@
 					$this->viewLogin->actionMessages($exceptions->getMessage());
 				}
 			}
-			//return false;//vet ej om denna behövs!
-
 		}
-
-		//public function checkInlogModel(){//skapar denna då jag måste skicka in parametrar till trylogingin!
-
-			
-		//	$this->modelLogin->trylogingin($this->loginUserName, $this->password);  // skickar värdena som den fått till modelklassen trylogin och kollar värdena!
-		//}
-
-
-
 	}
 
 

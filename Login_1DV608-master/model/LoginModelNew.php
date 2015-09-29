@@ -64,19 +64,6 @@
 				//$this->logedinStatus = true;// denna ska skicka så att man kommer vidare till en login skärm!
 			}
 		}
-			//return false;
-			//
-		//}
-
-		// public function getLogedinStatus(){
-  
-		// 	return $this->logedinStatus;//skickar tillbaka vilken status man har om man är inlogad eller inte! true eller false!
-		// }
-		// public function loginResultMessage(){//denna anropar jag för att få in felmeddelandet till message i index!
-
-		// 	return $this->actionMessage; 
-		// }
-
 		public function logoutModel(){ // denna ska skriva ut bye bye om man loggar ut!
 
 
@@ -91,18 +78,6 @@
 					//throw new EXCEPTION ("Welcome");
 					//$this->actionMessage = "Welcome";
 			}
-			// if($_SESSION["isLoginSession"] === false){//om nu checklogin är true så kommer bye bye skrivas ut
-				
-			// 	$this->actionMessage = "";
-				
-			// }// TODO: dessa är sånt jag kan ta bort efter jag frågat på handledningen!
-			// else{
-			// 	$this->actionMessage = "Bye bye!";
-			// }
-			//$_SESSION["isLoginSession"] = false;//sätter sessionen till false!
-			//session_destroy();//tar bort sessionen
-			//$_SESSION["isLoginSession"] = false;//sätter sessionen till false! var tvungen sätta till false för att destroy!
-			//session_destroy();//tar bort sessionen
 		}
 		public function checkLoginSession(){
 
@@ -112,12 +87,5 @@
 
 				}
 				return false;
-
-			
-
 		}
-		
-
-		
-
 	}
