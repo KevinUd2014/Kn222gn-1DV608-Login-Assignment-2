@@ -40,7 +40,7 @@ class LoginView {
 		//denna kollar att man har rätt inlogingnsuppgifter!
 		if(isset($_POST[self::$register]))//kollar så att man skrivet i något i fälten!
 		{
-			self::$previousName = $_POST[self::$regName];
+			//self::$previousName = $_POST[self::$regName];
 			return true;
 		}
 	}
@@ -64,6 +64,24 @@ class LoginView {
 
 	public function didUserLogout(){
 		if(isset($_POST[self::$logout]))
+		{
+			return true;
+		}
+	}
+	public function getRegName(){
+		if(isset($_POST[self::$regName]))
+		{
+			return true;
+		}
+	}
+	public function getRegPassword(){
+		if(isset($_POST[self::$regPassword]))
+		{
+			return true;
+		}
+	}
+	public function getRegRePassword(){
+		if(isset($_POST[self::$regRePassword]))
 		{
 			return true;
 		}
@@ -132,7 +150,7 @@ class LoginView {
 		$response = $this->generateRegistrationButton();
 		//$message = $this->loginModel->trylogingin($this->getUserName(), $this->getPassword());
 		if(isset($_POST[self::$register])){
-			$response = $this->generateRegistrationFormHTML();
+			$response = $this->generateRegistrationFormHTML($this->message);
 		}
 		else{
 			if($this->loginModel->checkLoginSession()){
