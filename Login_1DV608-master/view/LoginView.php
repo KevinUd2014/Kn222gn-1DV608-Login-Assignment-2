@@ -71,19 +71,19 @@ class LoginView {
 	public function getRegName(){
 		if(isset($_POST[self::$regName]))
 		{
-			return true;
+			return $_POST[self::$regName];
 		}
 	}
 	public function getRegPassword(){
 		if(isset($_POST[self::$regPassword]))
 		{
-			return true;
+			return $_POST[self::$regPassword];
 		}
 	}
 	public function getRegRePassword(){
 		if(isset($_POST[self::$regRePassword]))
 		{
-			return true;
+			return $_POST[self::$regRePassword];
 		}
 	}
 	public function welcomeMessage(){
@@ -98,6 +98,7 @@ class LoginView {
 	 public function actionMessages($message){// fick lägga till mina if och else if satset här istället!
 	 	//$message = "";
 	
+		//echo $message;
 		$this->message = $message;//tom message
 
 	// 	if($this->checkUserLoginPost())
@@ -152,6 +153,7 @@ class LoginView {
 		if(isset($_POST[self::$register])){
 			$response = $this->generateRegistrationFormHTML($this->message);
 		}
+
 		else{
 			if($this->loginModel->checkLoginSession()){
 
@@ -177,6 +179,7 @@ class LoginView {
 			<form method="post" > 
 				<fieldset>
 					<h2>Register new user</h2>
+					<p id="' . self::$messageId . '">' . $this->message . '</p>
 					<legend>Register a new user - Write a username and password</legend>
 					
 					<label for="' . self::$regName . '">Username :</label>
@@ -208,7 +211,7 @@ class LoginView {
 			</form>
 		';
 	}
-	
+	 
 	/**
 	* Generate HTML code on the output buffer for the logout button
 	* @param $message, String output message

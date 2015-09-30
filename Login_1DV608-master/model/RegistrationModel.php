@@ -13,14 +13,16 @@
 			$this->usernameInput = trim($Username);// dessa två kommer ta bort alla onödiga blankspace osv. ifårn mina strängar!
 			$this->userPasswordInput = trim($Password);
 			$this->reEnterPassword = trim($reEnterPass);
+
+			//echo $this->usernameInput;
 			
-			if (mb_strlen($this->usernameInput)< 3) {//här ska jag implementera de olika kraven man får t.ex. inte skriva i fält som är tomma!
+			if (mb_strlen($this->usernameInput) < 3) {//här ska jag implementera de olika kraven man får t.ex. inte skriva i fält som är tomma!
 			
 			 	throw new EXCEPTION ("Username is missing");
 			 	//$this->logedinStatus = false;
 			
 			}//här ska jag implementera de olika kraven man får t.ex. inte skriva i fält som är tomma!
-			else if (mb_strlen($this->userPasswordInput)< 6) {
+			else if (mb_strlen($this->userPasswordInput) < 6) {
  				
 			 	throw new EXCEPTION ("Password is missing");
 			 	//$this->logedinStatus = false;
