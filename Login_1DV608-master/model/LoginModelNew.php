@@ -13,7 +13,7 @@
 		public static $fullPassword = "Password";
 
 
-		public function __construct()
+		public function __construct()//
 		{
 			if(!isset($_SESSION['isLoginSession']))
 			{

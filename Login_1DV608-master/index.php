@@ -14,7 +14,7 @@ require_once("model/RegistrationModel.php");
   
 //CREATE OBJECTS OF THE VIEWS  
 
-$dtv = new DateTimeView();
+$dtv = new DateTimeView();//
 $lv = new LayoutView();
 
 $lm = new LoginModelNew();

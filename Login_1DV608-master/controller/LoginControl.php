@@ -32,7 +32,7 @@
 
 					$this->modelLogin->trylogingin($this->loginUserName, $this->password);
 
-					$this->viewLogin->welcomeMessage();
+					$this->viewLogin->welcomeMessage();//
 					/**
 					*	Tell view to show logout message
 					*/

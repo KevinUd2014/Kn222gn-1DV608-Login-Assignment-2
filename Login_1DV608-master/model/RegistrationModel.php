@@ -26,7 +26,7 @@
 			 	//$this->logedinStatus = false;
 
 			}
-			else if ($this->reEnterPassword != $this->userPasswordInput) {
+			else if ($this->reEnterPassword != $this->userPasswordInput) {//får inte dessa meddelanden att visa sig!!!!
  				
 			 	throw new EXCEPTION ("Password is not the same");
 			 	//$this->logedinStatus = false;

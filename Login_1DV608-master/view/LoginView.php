@@ -162,7 +162,7 @@ class LoginView {
 				$response .= $this->generateLoginFormHTML($this->message);//failar man så kommer detta visas! igen!  
 			}
 		}
-		return $response;
+		return $response;//
 	}
 
 	private function generateRegistrationButton(){
