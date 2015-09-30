@@ -6,6 +6,7 @@ require_once('view/DateTimeView.php');
 require_once('view/LayoutView.php');
 require_once('model/LoginModelNew.php');
 require_once('controller/LoginControl.php');
+require_once("model/RegistrationModel.php");
 
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
 // error_reporting(E_ALL);
@@ -18,9 +19,11 @@ $lv = new LayoutView();
 
 $lm = new LoginModelNew();
 
+$rm = new RegistrationModel();
+
 $v = new LoginView($lm);
 
-$lc = new LoginControl($v, $lm);
+$lc = new LoginControl($v, $lm, $rm);
 
 $lc->getLogin();
 

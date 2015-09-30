@@ -8,11 +8,16 @@
 		private $password;
 		private $viewLogin;
 		private $modelLogin;
+		private $regModel;
+		private $regUsername;
+		private $regPassword;
+		private $regReEnterPass;
 
-		public function __construct(LoginView $viewLogin, LoginModelNew $modelLogin){
+		public function __construct(LoginView $viewLogin, LoginModelNew $modelLogin, RegistrationModel $regModel){
 
 			$this->viewLogin = $viewLogin;  //hämtar denna och ger den värdet av det inskickade värdet!
 			$this->modelLogin = $modelLogin;
+			$this->regModel = $regModel;
 		}
 
 		public function getLogin(){
@@ -47,6 +52,25 @@
 					*/
 				}
 				catch(EXCEPTION $exceptions){
+					$this->viewLogin->actionMessages($exceptions->getMessage());
+				}
+			}
+			else if($this->viewLogin->checkUserRegisterPost())//om användaren postar i view så ska denna köras!
+			{
+				try{
+					$this->regUsername = $this->viewLogin->getRegName();//hämtar användarnamnet och lägger in i denna variabel
+					$this->regPassword = $this->viewLogin->getRegPassword();//hämtar lösenordet!
+					$this->regReEnterPass = $this->viewLogin->getRegRePassword();//hämtar lösenordet!
+				
+
+					$this->regModel->tryRegistration($this->regUsername, $this->regPassword, $this->regReEnterPass);
+
+					//$this->viewLogin->welcomeMessage();
+					/**
+					*	Tell view to show logout message
+					*/
+				}
+				catch(EXCEPTION $exceptions){  // kastar ett exception istället!
 					$this->viewLogin->actionMessages($exceptions->getMessage());
 				}
 			}

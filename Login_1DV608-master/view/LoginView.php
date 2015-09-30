@@ -176,7 +176,8 @@ class LoginView {
 		return '
 			<form method="post" > 
 				<fieldset>
-					<legend>Register - enter Username and password</legend>
+					<h2>Register new user</h2>
+					<legend>Register a new user - Write a username and password</legend>
 					
 					<label for="' . self::$regName . '">Username :</label>
 					<input type="text" id="' . self::$regName . '" name="' . self::$regName . '"  />
