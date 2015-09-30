@@ -1,5 +1,10 @@
 <?php
 
+// $mysql_host = "mysql8.000webhost.com";
+// $mysql_database = "a3759003_RegBase";
+// $mysql_user = "a3759003_Ass4";
+// $mysql_password = "Register123";//databasen med ösen osv.
+
 class LoginView {
 	private static $login = 'LoginView::Login';
 	private static $logout = 'LoginView::Logout';
