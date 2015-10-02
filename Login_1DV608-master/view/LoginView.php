@@ -36,15 +36,15 @@ class LoginView {
 			return true;
 		}
 	}
-	public function checkUserRegisterPost(){
+	// public function checkUserRegisterPost(){
 
-		//denna kollar att man har rätt inlogingnsuppgifter!
-		if(isset($_POST[self::$register]))//kollar så att man skrivet i något i fälten!
-		{
-			//self::$previousName = $_POST[self::$regName];
-			return true;
-		}
-	}
+	// 	//denna kollar att man har rätt inlogingnsuppgifter!
+	// 	if(isset($_POST[self::$register]))//kollar så att man skrivet i något i fälten!
+	// 	{
+	// 		//self::$previousName = $_POST[self::$regName];
+	// 		return true;
+	// 	}
+	// }
 
 	public function getUserName(){
 		//echo "användarnamn är vad?";
@@ -69,24 +69,24 @@ class LoginView {
 			return true;
 		}
 	}
-	public function getRegName(){
-		if(isset($_POST[self::$regName]))
-		{
-			return $_POST[self::$regName];
-		}
-	}
-	public function getRegPassword(){
-		if(isset($_POST[self::$regPassword]))
-		{
-			return $_POST[self::$regPassword];
-		}
-	}
-	public function getRegRePassword(){
-		if(isset($_POST[self::$regRePassword]))
-		{
-			return $_POST[self::$regRePassword];
-		}
-	}
+	// public function getRegName(){
+	// 	if(isset($_POST[self::$regName]))
+	// 	{
+	// 		return $_POST[self::$regName];
+	// 	}
+	// }
+	// public function getRegPassword(){
+	// 	if(isset($_POST[self::$regPassword]))
+	// 	{
+	// 		return $_POST[self::$regPassword];
+	// 	}
+	// }
+	// public function getRegRePassword(){
+	// 	if(isset($_POST[self::$regRePassword]))
+	// 	{
+	// 		return $_POST[self::$regRePassword];
+	// 	}
+	// }
 	public function welcomeMessage(){
 		self::$welcomeByeMessage = "Welcome";
 		$this->actionMessages(self::$welcomeByeMessage);
@@ -149,61 +149,61 @@ class LoginView {
 		//$message = $this->loginModel->loginResultMessage();//anropar funktionen!
 
 		$response = "";//skapar bara en tom sträng
-		$response = $this->generateLinkBetweenSitesButton();
+		//$response = $this->generateLinkBetweenSitesButton();
 		//$message = $this->loginModel->trylogingin($this->getUserName(), $this->getPassword());
-		if(isset($_GET["register"])){
-			$response .= $this->generateRegistrationFormHTML($this->message);
-		}
+		//if(isset($_GET["register"])){
+		//$response .= $this->generateRegistrationFormHTML($this->message);
+		//}
 
+		//else{
+		if($this->loginModel->checkLoginSession()){
+
+			$response = $this->generateLogoutButtonHTML($this->message);//anropar denna funktion om man nu lyckas logga in
+		}
 		else{
-			if($this->loginModel->checkLoginSession()){
 
-				$response = $this->generateLogoutButtonHTML($this->message);//anropar denna funktion om man nu lyckas logga in
-			}
-			else{
-
-				$response .= $this->generateLoginFormHTML($this->message);//failar man så kommer detta visas! igen!  
-			}
+			$response .= $this->generateLoginFormHTML($this->message);//failar man så kommer detta visas! igen!  
 		}
+	//}
 		return $response;
 	}
 
-	private function generateLinkBetweenSitesButton(){
+	// private function generateLinkBetweenSitesButton(){
 
-		if(isset($_GET["register"]))
-		{
-			return "<a href=?>Login Page</a>";
-					//"<h2>Register new user</h2>";
-		}
-		else
-		{
-			return "<a href=?register>Registration Page</a>";
-		}
-		//return '<a href=?register>Registration Page</a>';
-	}
+	// 	if(isset($_GET["register"]))
+	// 	{
+	// 		return "<a href=?"">Login Page</a>";
+	// 				//"<h2>Register new user</h2>";
+	// 	}
+	// 	else
+	// 	{
+	// 		return "<a href=?register>Registration Page</a>";
+	// 	}
+	// 	//return '<a href=?register>Registration Page</a>';
+	// }
 
-	private function generateRegistrationFormHTML() {
-		return '
-			<form method="post" >
-				<fieldset>
+	// private function generateRegistrationFormHTML() {
+	// 	return '
+	// 		<form method="post" >
+	// 			<fieldset>
 					
-					<p id="' . self::$messageId . '">' . $this->message . '</p>
-					<legend>Register a new user - Write a username and password</legend>
+	// 				<p id="' . self::$messageId . '">' . $this->message . '</p>
+	// 				<legend>Register a new user - Write a username and password</legend>
 					
-					<label for="' . self::$regName . '">Username :</label>
-					<input type="text" id="' . self::$regName . '" name="' . self::$regName . '"  /></br>
+	// 				<label for="' . self::$regName . '">Username :</label>
+	// 				<input type="text" id="' . self::$regName . '" name="' . self::$regName . '"  /></br>
 
-					<label for="' . self::$regPassword . '">Password :</label>
-					<input type="password" id="' . self::$regPassword . '" name="' . self::$regPassword . '" /></br>
+	// 				<label for="' . self::$regPassword . '">Password :</label>
+	// 				<input type="password" id="' . self::$regPassword . '" name="' . self::$regPassword . '" /></br>
 
-					<label for="' . self::$regRePassword . '">Repeat Password :</label>
-					<input type="password" id="' . self::$regRePassword . '" name="' . self::$regRePassword . '" /></br>
+	// 				<label for="' . self::$regRePassword . '">Repeat Password :</label>
+	// 				<input type="password" id="' . self::$regRePassword . '" name="' . self::$regRePassword . '" /></br>
 
-					<input type="submit" name="' . self::$register . '" value="Register" />
-				</fieldset>
-			</form>
-		';
-	}
+	// 				<input type="submit" name="' . self::$register . '" value="Register" />
+	// 			</fieldset>
+	// 		</form>
+	// 	';
+	// }
 
 
 	/**
@@ -229,6 +229,7 @@ class LoginView {
 		return '
 			<form method="post" > 
 				<fieldset>
+					
 					<legend>Login - enter Username and password</legend>
 					<p id="' . self::$messageId . '">' . $message . '</p>
 					

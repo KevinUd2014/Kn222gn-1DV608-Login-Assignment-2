@@ -3,7 +3,7 @@
 
 class LayoutView {
   
-  public function render($isLoggedIn, LoginView $v, DateTimeView $dtv) {
+  public function render($isLoggedIn, $v, DateTimeView $dtv) {
     echo '<!DOCTYPE html>
       <html>
         <head>
@@ -15,6 +15,7 @@ class LayoutView {
           ' . $this->renderIsLoggedIn($isLoggedIn) . '
           
           <div class="container">
+            ' . $this->generateLinkBetweenSitesButton($isLoggedIn) . '
               ' . $v->response() . '
               
               ' . $dtv->show() . '
@@ -30,6 +31,21 @@ class LayoutView {
     }
     else {
       return '<h2>Not logged in</h2>';
+    }
+  }
+  private function generateLinkBetweenSitesButton($isLoggedIn){
+    if(!$isLoggedIn){
+
+      if(isset($_GET["register"]))
+      {
+        return "<a href=?>Login Page</a>";
+            //"<h2>Register new user</h2>";
+      }
+      else
+      {
+        return "<a href=?register>Registration Page</a>";
+      }
+      //return '<a href=?register>Registration Page</a>';
     }
   }
 }

@@ -1,15 +1,15 @@
 <?php
 	class registerView{
 
-		private static $messageId = 'LoginView::Message';
+		private static $messageId = 'registerView::Message';
 		private $loginModel;
 		private $message;
 
-		private static $registerLoginSite = "LoginView::register";
-		private static $register = "LoginView::register";
-		private static $regName = "LoginView::regUsername";
-		private static $regPassword = "LoginView::regPassword";
-		private static $regRePassword = "LoginView::regRePassword";
+		private static $registerLoginSite = "registerView::register";
+		private static $register = "registerView::register";
+		private static $regName = "registerView::regUsername";
+		private static $regPassword = "registerView::regPassword";
+		private static $regRePassword = "registerView::regRePassword";
 
 
 		public function checkUserRegisterPost(){
@@ -21,13 +21,21 @@
 				return true;
 			}
 		}
-		
+
+		public function getRegName(){
+			
+		 	if(isset($_POST[self::$regName]))
+		 	{
+		 		return $_POST[self::$regName];
+			}
+		 }
+
 		public function getRegPassword(){
 
 			if(isset($_POST[self::$regPassword]))
-				{
-					return $_POST[self::$regPassword];
-				}
+			{
+				return $_POST[self::$regPassword];
+			}
 		}
 		public function getRegRePassword(){
 
@@ -45,24 +53,12 @@
 		public function response() {
 		
 			$response = "";//skapar bara en tom sträng
-			$response = $this->generateLinkBetweenSitesButton();
+			//$response = $this->generateLinkBetweenSitesButton();
 			//$message = $this->loginModel->trylogingin($this->getUserName(), $this->getPassword());
 			if(isset($_GET["register"])){
 				$response .= $this->generateRegistrationFormHTML($this->message);
 			}
-		}
-		private function generateLinkBetweenSitesButton(){
-
-			if(isset($_GET["register"]))
-			{
-				return "<a href=?>Login Page</a>";
-						//"<h2>Register new user</h2>";
-			}
-			else
-			{
-				return "<a href=?register>Registration Page</a>";
-			}
-			//return '<a href=?register>Registration Page</a>';
+			return $response;
 		}
 
 		private function generateRegistrationFormHTML() {
