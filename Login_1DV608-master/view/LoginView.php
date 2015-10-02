@@ -1,9 +1,5 @@
 <?php
 
-// $mysql_host = "mysql8.000webhost.com";
-// $mysql_database = "a3759003_RegBase";
-// $mysql_user = "a3759003_Ass4";
-// $mysql_password = "Register123";//databasen med ösen osv.
 
 class LoginView {
 	private static $login = 'LoginView::Login';
@@ -153,10 +149,10 @@ class LoginView {
 		//$message = $this->loginModel->loginResultMessage();//anropar funktionen!
 
 		$response = "";//skapar bara en tom sträng
-		$response = $this->generateRegistrationButton();
+		$response = $this->generateLinkBetweenSitesButton();
 		//$message = $this->loginModel->trylogingin($this->getUserName(), $this->getPassword());
-		if(isset($_POST[self::$register])){
-			$response = $this->generateRegistrationFormHTML($this->message);
+		if(isset($_GET["register"])){
+			$response .= $this->generateRegistrationFormHTML($this->message);
 		}
 
 		else{
@@ -169,34 +165,41 @@ class LoginView {
 				$response .= $this->generateLoginFormHTML($this->message);//failar man så kommer detta visas! igen!  
 			}
 		}
-		return $response;//
+		return $response;
 	}
 
-	private function generateRegistrationButton(){
-		return '<form  method="post" >
-					<p id="regButton"></p>
-					<input type="submit" name="' . self::$registerLoginSite . '" value="Registration Page"/>
-				</form>';
+	private function generateLinkBetweenSitesButton(){
+
+		if(isset($_GET["register"]))
+		{
+			return "<a href=?>Login Page</a>";
+					//"<h2>Register new user</h2>";
+		}
+		else
+		{
+			return "<a href=?register>Registration Page</a>";
+		}
+		//return '<a href=?register>Registration Page</a>';
 	}
 
 	private function generateRegistrationFormHTML() {
 		return '
-			<form method="post" > 
+			<form method="post" >
 				<fieldset>
-					<h2>Register new user</h2>
+					
 					<p id="' . self::$messageId . '">' . $this->message . '</p>
 					<legend>Register a new user - Write a username and password</legend>
 					
 					<label for="' . self::$regName . '">Username :</label>
-					<input type="text" id="' . self::$regName . '" name="' . self::$regName . '"  />
+					<input type="text" id="' . self::$regName . '" name="' . self::$regName . '"  /></br>
 
 					<label for="' . self::$regPassword . '">Password :</label>
-					<input type="password" id="' . self::$regPassword . '" name="' . self::$regPassword . '" />
+					<input type="password" id="' . self::$regPassword . '" name="' . self::$regPassword . '" /></br>
 
 					<label for="' . self::$regRePassword . '">Repeat Password :</label>
-					<input type="password" id="' . self::$regRePassword . '" name="' . self::$regRePassword . '" />
+					<input type="password" id="' . self::$regRePassword . '" name="' . self::$regRePassword . '" /></br>
 
-					<input type="submit" name="' . self::$register . '" value="register" />
+					<input type="submit" name="' . self::$register . '" value="Register" />
 				</fieldset>
 			</form>
 		';
