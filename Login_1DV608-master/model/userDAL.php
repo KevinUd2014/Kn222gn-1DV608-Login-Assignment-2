@@ -13,11 +13,15 @@
 
 			if (!$conn) {
 
-			    die('Could not connect: ' . mysql_error());
+			    die("Could not connect: " . mysql_error());
 
 			}
 
-			echo 'Connected successfully';
-			mysqli_close($conn);
+			echo "Connected successfully";
+			return $conn;
+
+			public function closeSqlConnection(){
+				mysqli_close($conn);
+			}
 		}
 	}

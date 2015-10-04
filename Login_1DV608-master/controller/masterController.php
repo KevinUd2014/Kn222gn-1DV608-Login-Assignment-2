@@ -28,7 +28,7 @@ class masterController
 	// $mysql_password = "Register123";//databasen med ösen osv.
 	public function startMyApplication(){
 	//databasen
-		$uDAL = new userDAL();
+		
 		$uC = new userCredentials();
 
 		//original view
@@ -40,6 +40,7 @@ class masterController
 
 		if(isset($_GET["register"]))
 		{
+			$uDAL = new userDAL();
 			$v = new registerView();// fick sätta denna till V för att det är vy för att den ska kunna köras!
 			$rm = new RegistrationModel();
 			$rc = new RegisterControl($rm, $v);
