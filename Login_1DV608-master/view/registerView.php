@@ -15,7 +15,7 @@
 		public function checkUserRegisterPost(){
 
 			//denna kollar att man har rätt inlogingnsuppgifter!
-			if(isset($_POST[self::$register]))//kollar så att man skrivet i något i fälten!
+			if(isset($_POST[self::$register]))//kollar så att man skrivet i något i fälten!//
 			{
 				//self::$previousName = $_POST[self::$regName];
 				return true;

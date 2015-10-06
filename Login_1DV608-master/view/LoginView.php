@@ -82,7 +82,7 @@ class LoginView {
 	// 	}
 	// }
 	// public function getRegRePassword(){
-	// 	if(isset($_POST[self::$regRePassword]))
+	// 	if(isset($_POST[self::$regRePassword]))//
 	// 	{
 	// 		return $_POST[self::$regRePassword];
 	// 	}

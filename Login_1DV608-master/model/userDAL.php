@@ -8,7 +8,7 @@ class userDAL{
 		$SQLusername = "Register";
 		$SQLpassword = "Register123";
 		//$SQLDatabase = "Assignment4";
-		$SQLDatabase = "Register";
+		$SQLDatabase = "Register";//
 
 		// Create connection
 		$this->conn = mysqli_connect($SQLservername, $SQLusername,$SQLpassword, $SQLDatabase);

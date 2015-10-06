@@ -18,7 +18,7 @@ class User{
 			$this->password = $this->hash($pword);
 	}
 
-	public function GetUsername(){
+	public function GetUsername(){//
 		return $this->username;
 	}
 

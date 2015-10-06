@@ -21,7 +21,7 @@
 			}
 		}
 
-		public function trylogingin($Username, $Password){ //denna anropas t.ex. i index!
+		public function trylogingin($Username, $Password){ //denna anropas t.ex. i index!//
 
 
 			//$this->logedinStatus = false; //vet ej opm denna

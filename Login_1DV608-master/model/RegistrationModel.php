@@ -18,7 +18,7 @@
 			//$this->logedinStatus = false; //vet ej opm denna
 			$this->usernameInput = trim($Username);// dessa två kommer ta bort alla onödiga blankspace osv. ifårn mina strängar!
 			$this->userPasswordInput = trim($Password);
-			$this->reEnterPassword = trim($reEnterPass);
+			$this->reEnterPassword = trim($reEnterPass);//
 
 			//echo $this->usernameInput;
 			
