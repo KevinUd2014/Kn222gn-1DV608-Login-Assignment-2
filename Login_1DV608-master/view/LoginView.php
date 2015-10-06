@@ -88,7 +88,7 @@ class LoginView {
 	// 	}
 	// }
 	public function welcomeMessage(){
-		self::$welcomeByeMessage = "Welcome";
+		self::$welcomeByeMessage = "Welcome, ".$_SESSION["userprofile"]->getUsername();
 		$this->actionMessages(self::$welcomeByeMessage);
 	}
 	public function byeMessage(){

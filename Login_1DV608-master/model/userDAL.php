@@ -1,27 +1,86 @@
 <?php
 
-	class userDAL{
+class userDAL{
+	private $conn;
 
-		public function createSqlConnection(){
-			$SQLservername = "localhost";
-			$SQLusername = "Register";
-			$SQLpassword = "Register123";
-			$SQLDatabase = "Assignment4";
+	public function createSqlConnection(){
+		$SQLservername = "localhost";
+		$SQLusername = "Register";
+		$SQLpassword = "Register123";
+		//$SQLDatabase = "Assignment4";
+		$SQLDatabase = "Register";
 
-			// Create connection
-			$conn = mysqli_connect($SQLservername, $SQLusername,$SQLpassword, $SQLDatabase);
+		// Create connection
+		$this->conn = mysqli_connect($SQLservername, $SQLusername,$SQLpassword, $SQLDatabase);
 
-			if (!$conn) {
+		if (!$this->conn) {
 
-			    die("Could not connect: " . mysql_error());
+		    die("Could not connect: " . mysql_error());
 
-			}
-
-			echo "Connected successfully";
-			return $conn;
-
-			public function closeSqlConnection(){
-				mysqli_close($conn);
-			}
 		}
+		//echo "Connected successfully";
+		return $this->conn;
+
+		
 	}
+	public function closeSqlConnection(){
+		mysqli_close($this->conn);
+	}
+
+	public function putUserInDatabase($usernameInput, $passwordInput){
+
+		$connect = $this->createSqlConnection();
+
+		/*
+		$this->usernameInput = $usernameInput;// dessa två kommer ta bort alla onödiga blankspace osv. ifårn mina strängar!
+		$this->userPasswordInput = $this->hash($usernameInput, $passwordInput);
+		*/
+
+		$sqlQuery = "INSERT INTO `Register`.`Register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
+		$connResult = $connect->query($sqlQuery);
+
+		$this->closeSqlConnection();
+
+		if(!$connResult){
+			return false;
+			echo("Username already in use!"); 
+		}
+
+		return true;
+	}
+	public function getByUsername($username){
+
+		$connect = $this->createSqlConnection();
+
+		$sqlQuery = "SELECT Username, Password FROM Register WHERE Username='" . $username . "'";
+		$connResult = $connect->query($sqlQuery);
+
+		$row = $connResult->fetch_array();
+
+		$this->closeSqlConnection();
+
+		if (isset($row))
+			return $row;
+
+		return null;
+	}
+
+	// public function getAllUsers()
+	// {
+	// 	$connect = $this->createSqlConnection();
+
+	// 	$sqlQuery = "SELECT Username FROM Register";
+	// 	$connResult = $connect->query($sqlQuery);
+
+	// 	$userarray = array();
+
+	// 	while ($row = $connResult->fetch_array())
+	// 	{
+	// 		array_push($userarray,$row);
+	// 	}
+
+	// 	$this->closeSqlConnection();
+
+	// 	return $userarray;
+	// }
+}

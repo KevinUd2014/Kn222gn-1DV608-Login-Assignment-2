@@ -1,5 +1,5 @@
 <?php
-
+	require_once("User.php");
 	class LoginModelNew{
 		//fick döpa den till new eftersom jag skapade mappen i fel mapp först!
 		//ska anropa modelen och få tilbaka svar som i sin tur skickas till view!
@@ -40,13 +40,18 @@
 			 	//$this->logedinStatus = false;
 
 			}
-			else if($this->usernameInput !== self::$fullUserName || $this->userPasswordInput !==  self::$fullPassword){// fick hjälp med denna av Andreas! jag hade en överkomplicerad!
+
+			$user = User::Get($this->usernameInput);
+
+
+			if($user == null || !$user->ComparePassword($this->userPasswordInput)){// fick hjälp med denna av Andreas! jag hade en överkomplicerad!
 			//hade denna uppdelad i två else if satser men satte ihop dem men vet ej om det går att göra bättre!
 
 			 	throw new EXCEPTION ("Wrong name or password");
 			 	//$this->logedinStatus = false;
 			}
-			else if($this->usernameInput == self::$fullUserName && $this->userPasswordInput == self::$fullPassword){
+			else
+			{
 				if($_SESSION['isLoginSession']){
 
 					throw new EXCEPTION ();
@@ -55,6 +60,7 @@
 				else{
 
 					$_SESSION['isLoginSession'] = true;
+					$_SESSION['userprofile'] = $user;
 					//throw new EXCEPTION ("Welcome");
 					//$this->actionMessage = "Welcome";
 				}
@@ -63,6 +69,7 @@
 				//$_SESSION['isLoginSession'] = true;
 				//$this->logedinStatus = true;// denna ska skicka så att man kommer vidare till en login skärm!
 			}
+			
 		}
 		public function logoutModel(){ // denna ska skriva ut bye bye om man loggar ut!
 
@@ -75,6 +82,7 @@
 			else{
 
 				$_SESSION["isLoginSession"] = false;
+				unset ($_SESSION["userprofile"]);
 					//throw new EXCEPTION ("Welcome");
 					//$this->actionMessage = "Welcome";
 			}

@@ -38,11 +38,11 @@ class masterController
 
 
 
-		if(isset($_GET["register"]))
+		if(isset($_GET["register"]))//delar upp min applikation i en register och en login väg!
 		{
 			$uDAL = new userDAL();
 			$v = new registerView();// fick sätta denna till V för att det är vy för att den ska kunna köras!
-			$rm = new RegistrationModel();
+			$rm = new RegistrationModel($uDAL);
 			$rc = new RegisterControl($rm, $v);
 
 			$rc->tryRegisterUser();
@@ -57,7 +57,7 @@ class masterController
 			$lc->getLogin();
 		}
 
-		$uDAL->createSqlConnection(); //skriver ut om connection till datorbasen funkade!
+		//$uDAL->createSqlConnection(); //skriver ut om connection till datorbasen funkade!
 
 		
 
