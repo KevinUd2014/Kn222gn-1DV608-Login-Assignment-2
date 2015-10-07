@@ -52,7 +52,7 @@
 			//$user->GetUsername(), $user->GetPasswordHash()
 
 			$_SESSION["Redirect"] = $this->userDAL->putUserInDatabase($Username, $Password);
-			var_dump($_SESSION["Redirect"]);
+			//var_dump($_SESSION["Redirect"]);
 			//return $result;
 			//$user = new User($this->usernameInput,$this->userPasswordInput);
 			//User::PutInDatabase($user);
