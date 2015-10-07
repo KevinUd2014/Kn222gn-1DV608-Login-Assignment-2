@@ -8,6 +8,8 @@ class userDAL{
 		$SQLusername = "Register";
 		$SQLpassword = "Register123";
 		//$SQLDatabase = "Assignment4";
+		//database name 	a3759003_RegName
+		//my sql username-  	a3759003_Registr
 		$SQLDatabase = "Register";//
 
 		// Create connection
@@ -42,8 +44,9 @@ class userDAL{
 		$this->closeSqlConnection();
 
 		if(!$connResult){
-			return false;
-			echo("Username already in use!"); 
+			throw new EXCEPTION ("User exists, pick another username.");//denna skickar ett felmeddelande om nu en användare redan finns i databasen!
+			//return false;
+			//echo("Username already in use!"); 
 		}
 
 		return true;

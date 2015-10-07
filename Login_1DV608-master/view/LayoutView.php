@@ -12,10 +12,11 @@ class LayoutView {
         </head>
         <body>
           <h1>Assignment 2</h1>
+          ' . $this->generateLinkBetweenSitesButton($isLoggedIn) . '
           ' . $this->renderIsLoggedIn($isLoggedIn) . '
           
           <div class="container">
-            ' . $this->generateLinkBetweenSitesButton($isLoggedIn) . '
+            
               ' . $v->response() . '
               
               ' . $dtv->show() . '
@@ -38,12 +39,12 @@ class LayoutView {
 
       if(isset($_GET["register"]))
       {
-        return "<a href=?>Login Page</a>";
+        return "<a href=?>Back to login</a>";
             //"<h2>Register new user</h2>";
       }
       else
       {
-        return "<a href=?register>Registration Page</a>";
+        return "<a href=?register>Register a new user</a>";
       }
       //return '<a href=?register>Registration Page</a>';
     }

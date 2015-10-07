@@ -10,6 +10,7 @@
 		private static $regName = "registerView::regUsername";
 		private static $regPassword = "registerView::regPassword";
 		private static $regRePassword = "registerView::regRePassword";
+		private static $previousName;
 
 
 		public function checkUserRegisterPost(){
@@ -17,7 +18,7 @@
 			//denna kollar att man har rätt inlogingnsuppgifter!
 			if(isset($_POST[self::$register]))//kollar så att man skrivet i något i fälten!//
 			{
-				//self::$previousName = $_POST[self::$regName];
+				self::$previousName = $_POST[self::$regName];
 				return true;
 			}
 		}
@@ -70,7 +71,7 @@
 						<legend>Register a new user - Write a username and password</legend>
 						
 						<label for="' . self::$regName . '">Username :</label>
-						<input type="text" id="' . self::$regName . '" name="' . self::$regName . '"  /></br>
+						<input type="text" id="' . self::$regName . '" name="' . self::$regName . '"  value="'. self::$previousName .'" /></br>
 
 						<label for="' . self::$regPassword . '">Password :</label>
 						<input type="password" id="' . self::$regPassword . '" name="' . self::$regPassword . '" /></br>

@@ -21,26 +21,32 @@
 			$this->reEnterPassword = trim($reEnterPass);//
 
 			//echo $this->usernameInput;
+			if(strip_tags($this->usernameInput) != $this->usernameInput){
+				throw new EXCEPTION ("Username contains invalid characters.");
+			}
+			// else if(strip_tags($this->userPasswordInput) != $this->userPasswordInput){
+			// 	throw new EXCEPTION ("Password contains invalid characters.");
+			// }
+			else if (mb_strlen($this->usernameInput) < 3) {//här ska jag implementera de olika kraven man får t.ex. inte skriva i fält som är tomma!
 			
-			if (mb_strlen($this->usernameInput) < 3) {//här ska jag implementera de olika kraven man får t.ex. inte skriva i fält som är tomma!
-			
-			 	throw new EXCEPTION ("Username is missing");
+			 	throw new EXCEPTION ("Username has too few characters, at least 3 characters.");
 			 	//$this->logedinStatus = false;
 			
 			}//här ska jag implementera de olika kraven man får t.ex. inte skriva i fält som är tomma!
-			else if(empty($this->userPasswordInput)){
-				throw new EXCEPTION ("Password is Empty");
-			}
+			// else if(empty($this->userPasswordInput)){
+			// 	throw new EXCEPTION ("Password is Empty");
+			// }
 			else if (mb_strlen($this->userPasswordInput) < 6) {
  				
-			 	throw new EXCEPTION ("Password is to short!");
+			 	throw new EXCEPTION ("Password has too few characters, at least 6 characters.");
 			 	//$this->logedinStatus = false;
 			}
 			else if ($this->reEnterPassword != $this->userPasswordInput) {//får inte dessa meddelanden att visa sig!!!!
  				
-			 	throw new EXCEPTION ("Password is not the same");
+			 	throw new EXCEPTION ("Passwords do not match.");
 			 	//$this->logedinStatus = false;
 			}
+			//esle if()
 			
 
 			$user = new User($this->usernameInput,$this->userPasswordInput);
