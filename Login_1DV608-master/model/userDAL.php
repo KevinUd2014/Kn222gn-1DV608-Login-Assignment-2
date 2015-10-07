@@ -4,13 +4,17 @@ class userDAL{
 	private $conn;
 
 	public function createSqlConnection(){
+		//local SQL
 		$SQLservername = "localhost";
 		$SQLusername = "Register";
 		$SQLpassword = "Register123";
-		//$SQLDatabase = "Assignment4";
-		//database name 	a3759003_RegName
-		//my sql username-  	a3759003_Registr
-		$SQLDatabase = "Register";//
+		$SQLDatabase = "Register";
+
+		//server SQL
+		/*$SQLservername = "server30.000webhost.com";
+		$SQLusername = "a3759003_RegName";
+		$SQLpassword = "Register123";
+		$SQLDatabase = "a3759003_Registr";*/
 
 		// Create connection
 		$this->conn = mysqli_connect($SQLservername, $SQLusername,$SQLpassword, $SQLDatabase);
@@ -38,7 +42,8 @@ class userDAL{
 		$this->userPasswordInput = $this->hash($usernameInput, $passwordInput);
 		*/
 
-		$sqlQuery = "INSERT INTO `Register`.`Register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
+		//$sqlQuery = "INSERT INTO `Register`.`Register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
+		$sqlQuery = "INSERT INTO `Register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
 		$connResult = $connect->query($sqlQuery);
 
 		$this->closeSqlConnection();
