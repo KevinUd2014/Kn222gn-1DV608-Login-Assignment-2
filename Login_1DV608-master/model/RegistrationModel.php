@@ -7,11 +7,10 @@
 		private $reEnterPassword;
 
 		
-/*
 		public function __construct($userDAL){
 			$this->userDAL = $userDAL;
 		}
-*/
+
 		public function tryRegistration($Username, $Password, $reEnterPass){ //denna anropas t.ex. i index!
 
 
@@ -47,10 +46,14 @@
 			 	//$this->logedinStatus = false;
 			}
 			//esle if()
-			
 
-			$user = new User($this->usernameInput,$this->userPasswordInput);
-			User::PutInDatabase($user);
+			//$user = new User($Username, $Password);
+			
+			//$result = 
+			$this->userDAL->putUserInDatabase($Username, $Password);
+			//return $result;
+			//$user = new User($this->usernameInput,$this->userPasswordInput);
+			//User::PutInDatabase($user);
 	}
 	//denna funktion ska inte vara synlig för då kan man enkelt hacka och lista ut alla lösenord osv.
 	

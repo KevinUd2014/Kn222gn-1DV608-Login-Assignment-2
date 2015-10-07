@@ -5,14 +5,15 @@ class User{
 	private $username;
 	private $password;
 
-	private static $dal;
+	//private $dal;
 
 	private $giveMeSomeSalt = "MayIHaveSomeSaltPLEASE??";
 	private $salt2 = "heheh?";
 	private $salt3 = "?!Youwillneverfindout";
 
 	public function __construct($uname,$pword = null)
-	{    
+	{
+		//$this->dal = new userDAL();
 		$this->username = $uname;
 		if ($pword != null)//password får inte vara null!
 			$this->password = $this->hash($pword);
@@ -45,29 +46,24 @@ class User{
 		return sha1($this->giveMeSomeSalt.$password.$this->salt2.$this->username.$this->salt3);
 	}
 
-	public static function PutInDatabase($user)// denna ska lägga in de nya loginvärderna i datorbasen!
-	{
-		$result = self::$dal->putUserInDatabase($user->GetUsername(), $user->GetPasswordHash());
-		return $result;
-	}
+	// public static function PutInDatabase($user)// denna ska lägga in de nya loginvärderna i datorbasen!
+	// {
+	// 	$result = self::$dal->putUserInDatabase($user->GetUsername(), $user->GetPasswordHash());
+	// 	return $result;
+	// }
 
-	public static function Get($username){
+	// public static function Get($username){
 
-		$data = self::$dal->getByUsername($username);
+	// 	$data = $this->dal->getByUsername($username);
 
-		if ($data == NULL)//om användarnamnet är null så returnerar det null!
-			return null;
+	// 	if ($data == NULL)//om användarnamnet är null så returnerar det null!
+	// 		return null;
 
-		$user = new User($data["Username"]);
-		$user->SetHashedPassword($data["Password"]);//sätter de nya lösenordet och usernamnet!
+	// 	$user = new User($data["Username"]);
+	// 	$user->SetHashedPassword($data["Password"]);//sätter de nya lösenordet och usernamnet!
 
-		return $user;
-	}
-
-	public static function Init() //denna initierar så jag kan komma åt den överallt!
-	{
-		self::$dal = new userDAL();
-	}
+	// 	return $user;
+	// }
 
 // // RASMUS SHITE
 
@@ -97,4 +93,4 @@ class User{
 // 	}
 // 	//SLUT PÅ RASMUS HSITE
 }
-User::Init();
+

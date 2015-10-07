@@ -12,7 +12,18 @@
 		private static $regRePassword = "registerView::regRePassword";
 		private static $previousName;
 
-
+		/*
+		public function GetRegisterUser(){
+			try{
+				$userName = getRegName();
+				return new User($userName, $password);
+			}
+			catch(){
+				//set error
+			}
+			return null;
+		}
+		*/
 		public function checkUserRegisterPost(){
 
 			//denna kollar att man har rätt inlogingnsuppgifter!
@@ -66,18 +77,18 @@
 			return '
 				<form method="post" >
 					<fieldset>
-						
-						<p id="' . self::$messageId . '">' . $this->message . '</p>
 						<legend>Register a new user - Write a username and password</legend>
+						<p id="' . self::$messageId . '">' . $this->message . '</p>
+						
 						
 						<label for="' . self::$regName . '">Username :</label>
-						<input type="text" id="' . self::$regName . '" name="' . self::$regName . '"  value="'. self::$previousName .'" /></br>
+						<input type="text" id="' . self::$regName . '" name="' . self::$regName . '"  value="'. self::$previousName .'" /><br />
 
 						<label for="' . self::$regPassword . '">Password :</label>
-						<input type="password" id="' . self::$regPassword . '" name="' . self::$regPassword . '" /></br>
+						<input type="password" id="' . self::$regPassword . '" name="' . self::$regPassword . '" /><br />
 
 						<label for="' . self::$regRePassword . '">Repeat Password :</label>
-						<input type="password" id="' . self::$regRePassword . '" name="' . self::$regRePassword . '" /></br>
+						<input type="password" id="' . self::$regRePassword . '" name="' . self::$regRePassword . '" /><br />
 
 						<input type="submit" name="' . self::$register . '" value="Register" />
 					</fieldset>

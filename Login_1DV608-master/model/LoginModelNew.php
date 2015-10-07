@@ -8,13 +8,15 @@
 		private $userPasswordInput;
 		private $logedinStatus;
 		private $actionMessage;
+		private $userDAL;
 
 		public static $fullUserName = "Admin";
 		public static $fullPassword = "Password";
 
 
-		public function __construct()//
+		public function __construct($userDAL)//
 		{
+			$this->userDAL = $userDAL;
 			if(!isset($_SESSION['isLoginSession']))
 			{
 				$_SESSION['isLoginSession'] = false;
@@ -41,7 +43,7 @@
 
 			}
 
-			$user = User::Get($this->usernameInput);
+			$user = $this->userDAL->getByUsername($this->usernameInput);
 
 
 			if($user == null || !$user->ComparePassword($this->userPasswordInput)){// fick hjälp med denna av Andreas! jag hade en överkomplicerad!

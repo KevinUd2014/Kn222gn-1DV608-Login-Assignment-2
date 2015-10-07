@@ -34,13 +34,12 @@ class masterController
 		//original view
 		$dtv = new DateTimeView();//
 		$lv = new LayoutView();
-		$lm = new LoginModelNew();
-
+		$uDAL = new userDAL();
+		$lm = new LoginModelNew($uDAL);
 
 
 		if(isset($_GET["register"]))//delar upp min applikation i en register och en login väg!
 		{
-			$uDAL = new userDAL();
 			$v = new registerView();// fick sätta denna till V för att det är vy för att den ska kunna köras!
 			$rm = new RegistrationModel($uDAL);
 			$rc = new RegisterControl($rm, $v);

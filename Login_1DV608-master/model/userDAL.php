@@ -67,28 +67,13 @@ class userDAL{
 
 		$this->closeSqlConnection();
 
-		if (isset($row))
-			return $row;
+		if (!isset($row))
+			return null;
+		if ($row == NULL)//om användarnamnet är null så returnerar det null!
+			return null;
 
-		return null;
+		$user = new User($row["Username"], $row["Password"]);
+
+		return $user;
 	}
-
-	// public function getAllUsers()
-	// {
-	// 	$connect = $this->createSqlConnection();
-
-	// 	$sqlQuery = "SELECT Username FROM Register";
-	// 	$connResult = $connect->query($sqlQuery);
-
-	// 	$userarray = array();
-
-	// 	while ($row = $connResult->fetch_array())
-	// 	{
-	// 		array_push($userarray,$row);
-	// 	}
-
-	// 	$this->closeSqlConnection();
-
-	// 	return $userarray;
-	// }
 }
