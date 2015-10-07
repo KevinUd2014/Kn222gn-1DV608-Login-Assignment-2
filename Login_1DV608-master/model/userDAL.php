@@ -11,7 +11,7 @@ class userDAL{
 		$SQLDatabase = "Register";
 
 		//server SQL
-		/*$SQLservername = "server30.000webhost.com";
+		/*$SQLservername = "mysql8.000webhost.com";
 		$SQLusername = "a3759003_RegName";
 		$SQLpassword = "Register123";
 		$SQLDatabase = "a3759003_Registr";*/
@@ -42,12 +42,11 @@ class userDAL{
 		$this->userPasswordInput = $this->hash($usernameInput, $passwordInput);
 		*/
 
-		//$sqlQuery = "INSERT INTO `Register`.`Register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
-		$sqlQuery = "INSERT INTO `Register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
+		$sqlQuery = "INSERT INTO `register`.`register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
+		//$sqlQuery = "INSERT INTO `Register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
 		$connResult = $connect->query($sqlQuery);
 
 		$this->closeSqlConnection();
-
 		if(!$connResult){
 			throw new EXCEPTION ("User exists, pick another username.");//denna skickar ett felmeddelande om nu en användare redan finns i databasen!
 			//return false;
@@ -60,7 +59,7 @@ class userDAL{
 
 		$connect = $this->createSqlConnection();
 
-		$sqlQuery = "SELECT Username, Password FROM Register WHERE Username='" . $username . "'";
+		$sqlQuery = "SELECT Username, Password FROM Register WHERE BINARY Username='" . $username . "'";
 		$connResult = $connect->query($sqlQuery);
 
 		$row = $connResult->fetch_array();

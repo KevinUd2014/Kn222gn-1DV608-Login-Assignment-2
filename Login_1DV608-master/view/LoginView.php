@@ -36,15 +36,6 @@ class LoginView {
 			return true;
 		}
 	}
-	// public function checkUserRegisterPost(){
-
-	// 	//denna kollar att man har rätt inlogingnsuppgifter!
-	// 	if(isset($_POST[self::$register]))//kollar så att man skrivet i något i fälten!
-	// 	{
-	// 		//self::$previousName = $_POST[self::$regName];
-	// 		return true;
-	// 	}
-	// }
 
 	public function getUserName(){
 		//echo "användarnamn är vad?";
@@ -69,26 +60,8 @@ class LoginView {
 			return true;
 		}
 	}
-	// public function getRegName(){
-	// 	if(isset($_POST[self::$regName]))
-	// 	{
-	// 		return $_POST[self::$regName];
-	// 	}
-	// }
-	// public function getRegPassword(){
-	// 	if(isset($_POST[self::$regPassword]))
-	// 	{
-	// 		return $_POST[self::$regPassword];
-	// 	}
-	// }
-	// public function getRegRePassword(){
-	// 	if(isset($_POST[self::$regRePassword]))//
-	// 	{
-	// 		return $_POST[self::$regRePassword];
-	// 	}
-	// }
 	public function welcomeMessage(){
-		self::$welcomeByeMessage = "Welcome, ".$_SESSION["userprofile"]->getUsername();
+		self::$welcomeByeMessage = "Welcome";
 		$this->actionMessages(self::$welcomeByeMessage);
 	}
 	public function byeMessage(){
@@ -97,41 +70,14 @@ class LoginView {
 	}
 
 	 public function actionMessages($message){// fick lägga till mina if och else if satset här istället!
-	 	//$message = "";
-	
-		//echo $message;
-		$this->message = $message;//tom message
 
-	// 	if($this->checkUserLoginPost())
-	// 	{
-
-	// 		if($this->getUserName() == "")
-	// 		{
-	// 			$this->message = "Username is missing";
-	// 		} 
-			
-	// 		else if($this->getPassword() == "")
-	// 		{
-	// 			$this->message = "Password is missing";
-	// 		}
-	// 		else if (!$this->loginModel->checkLoginSession()){
-	// 			$this->message = "Wrong name or password";
-	// 		}
-			
-	// 		else if($this->loginModel->checkLoginSession() && $_SESSION["successMessage"])//man måste ha båda korrekta och även 
-	// 		{
-	// 			$_SESSION["successMessage"] = false;
-	// 			$this->message = "Welcome";
-	// 		}
-	// 		else if ($this->didUserLogout() && !$_SESSION["successMessage"]) //flytta denna utanför if!
-	// 		{
-	// 			$_SESSION["successMessage"] = true;
-	// 			$this->message = "Bye bye!";
-	// 			session_destroy();
-	// 		}
+	 		if(isset($_SESSION["Redirect"]) && $_SESSION["Redirect"] == true){//redirekterar mi till login efter succes!
+				$this->message = "Registered user!";
+				unset($_SESSION["Redirect"]);
+			}
+			else
+				$this->message = $message;//tom message
 		}
-
-	// }
 
 
 	/**
@@ -143,17 +89,7 @@ class LoginView {
 	 */
 	public function response() {
 		
-
-		//$this->actionMessages();//anropar min funktion!
-		//$this->message = self::$welcomeByeMessage;
-		//$message = $this->loginModel->loginResultMessage();//anropar funktionen!
-
 		$response = "";//skapar bara en tom sträng
-		//$response = $this->generateLinkBetweenSitesButton();
-		//$message = $this->loginModel->trylogingin($this->getUserName(), $this->getPassword());
-		//if(isset($_GET["register"])){
-		//$response .= $this->generateRegistrationFormHTML($this->message);
-		//}
 
 		//else{
 		if($this->loginModel->checkLoginSession()){
@@ -167,44 +103,6 @@ class LoginView {
 	//}
 		return $response;
 	}
-
-	// private function generateLinkBetweenSitesButton(){
-
-	// 	if(isset($_GET["register"]))
-	// 	{
-	// 		return "<a href=?"">Login Page</a>";
-	// 				//"<h2>Register new user</h2>";
-	// 	}
-	// 	else
-	// 	{
-	// 		return "<a href=?register>Registration Page</a>";
-	// 	}
-	// 	//return '<a href=?register>Registration Page</a>';
-	// }
-
-	// private function generateRegistrationFormHTML() {
-	// 	return '
-	// 		<form method="post" >
-	// 			<fieldset>
-					
-	// 				<p id="' . self::$messageId . '">' . $this->message . '</p>
-	// 				<legend>Register a new user - Write a username and password</legend>
-					
-	// 				<label for="' . self::$regName . '">Username :</label>
-	// 				<input type="text" id="' . self::$regName . '" name="' . self::$regName . '"  /></br>
-
-	// 				<label for="' . self::$regPassword . '">Password :</label>
-	// 				<input type="password" id="' . self::$regPassword . '" name="' . self::$regPassword . '" /></br>
-
-	// 				<label for="' . self::$regRePassword . '">Repeat Password :</label>
-	// 				<input type="password" id="' . self::$regRePassword . '" name="' . self::$regRePassword . '" /></br>
-
-	// 				<input type="submit" name="' . self::$register . '" value="Register" />
-	// 			</fieldset>
-	// 		</form>
-	// 	';
-	// }
-
 
 	/**
 	* Generate HTML code on the output buffer for the logout button

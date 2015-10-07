@@ -45,6 +45,10 @@ class masterController
 			$rc = new RegisterControl($rm, $v);
 
 			$rc->tryRegisterUser();
+
+			if(isset($_SESSION["Redirect"]) && $_SESSION["Redirect"] == true){//redirekterar mi till login efter succes!
+				header("Location: ?");
+			}
 		}
 		else
 	    {

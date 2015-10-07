@@ -27,6 +27,7 @@
 				
 
 					$this->regModel->tryRegistration($this->regUsername, $this->regPassword, $this->regReEnterPass);
+					//$this->regView->SuccessMessage();//
 				}
 				catch(EXCEPTION $exceptions){  // kastar ett exception istället!
 					$this->regView->actionMessages($exceptions->getMessage());//

@@ -1,5 +1,5 @@
 <?php
-
+	require_once("model/User.php");
 	class RegistrationModel{
 
 		private $usernameInput;
@@ -48,9 +48,11 @@
 			//esle if()
 
 			//$user = new User($Username, $Password);
-			
 			//$result = 
-			$this->userDAL->putUserInDatabase($Username, $Password);
+			//$user->GetUsername(), $user->GetPasswordHash()
+
+			$_SESSION["Redirect"] = $this->userDAL->putUserInDatabase($Username, $Password);
+			var_dump($_SESSION["Redirect"]);
 			//return $result;
 			//$user = new User($this->usernameInput,$this->userPasswordInput);
 			//User::PutInDatabase($user);
