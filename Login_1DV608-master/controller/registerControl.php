@@ -24,10 +24,8 @@
 					$this->regUsername = $this->regView->getRegName();//hämtar användarnamnet och lägger in i denna variabel
 					$this->regPassword = $this->regView->getRegPassword();//hämtar lösenordet!
 					$this->regReEnterPass = $this->regView->getRegRePassword();//hämtar lösenordet!
-				
-
+					
 					$this->regModel->tryRegistration($this->regUsername, $this->regPassword, $this->regReEnterPass);
-					//$this->regView->SuccessMessage();//
 				}
 				catch(EXCEPTION $exceptions){  // kastar ett exception istället!
 					$this->regView->actionMessages($exceptions->getMessage());//

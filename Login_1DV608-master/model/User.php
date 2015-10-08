@@ -13,7 +13,6 @@ class User{
 
 	public function __construct($uname,$pword = null)
 	{
-		//$this->dal = new userDAL();
 		$this->username = $uname;
 		if ($pword != null)//password får inte vara null!
 			$this->password = $this->hash($pword);
@@ -45,52 +44,5 @@ class User{
 
 		return sha1($this->giveMeSomeSalt.$password.$this->salt2.$this->username.$this->salt3);
 	}
-
-	// public static function PutInDatabase($user)// denna ska lägga in de nya loginvärderna i datorbasen!
-	// {
-	// 	$result = self::$dal->putUserInDatabase($user->GetUsername(), $user->GetPasswordHash());
-	// 	return $result;
-	// }
-
-	// public static function Get($username){
-
-	// 	$data = $this->dal->getByUsername($username);
-
-	// 	if ($data == NULL)//om användarnamnet är null så returnerar det null!
-	// 		return null;
-
-	// 	$user = new User($data["Username"]);
-	// 	$user->SetHashedPassword($data["Password"]);//sätter de nya lösenordet och usernamnet!
-
-	// 	return $user;
-	// }
-
-// // RASMUS SHITE
-
-// 	public static function GetAllUsers()
-// 	{
-// 		$data = self::$dal->GetAllUsers();
-// 		$users = array();
-// 		foreach($data as $user)
-// 		{
-// 			array_push($users,new User($user["Username"]));
-// 		}
-
-// 		return $users;
-// 	}
-
-// 	public static function ListAllUsers()
-// 	{
-// 		$users = self::GetAllUsers();
-// 		$html = "<ul>";
-// 		foreach($users as $user)
-// 		{
-// 			$html .= "<li>".$user->GetUsername();
-// 		}
-// 		$html .= "</ul>";
-
-// 		return $html;
-// 	}
-// 	//SLUT PÅ RASMUS HSITE
 }
 

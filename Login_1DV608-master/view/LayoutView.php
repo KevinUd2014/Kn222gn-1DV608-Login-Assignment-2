@@ -46,7 +46,6 @@ class LayoutView {
       {
         return "<a href=?register>Register a new user</a>";
       }
-      //return '<a href=?register>Registration Page</a>';
     }
   }
 }

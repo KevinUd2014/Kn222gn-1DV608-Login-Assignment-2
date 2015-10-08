@@ -32,14 +32,20 @@ class LoginView {
 		//denna kollar att man har rätt inlogingnsuppgifter!
 		if(isset($_POST[self::$login]))//kollar så att man skrivet i något i fälten!
 		{
-			self::$previousName = $_POST[self::$name];
+			if(!isset($_SESSION["RedirektUsername"])){
+				self::$previousName = $_POST[self::$name];
+			}
 			return true;
+		}
+
+		if(isset($_SESSION["RedirektUsername"])){
+			self::$previousName = $_SESSION["RedirektUsername"];
+			unset($_SESSION["RedirektUsername"]);
 		}
 	}
 
 	public function getUserName(){
-		//echo "användarnamn är vad?";
-		//$userInputName = $_POST[self::$name];
+		
 		if(isset($_POST[self::$name])){
 		
 			return $_POST[self::$name];//man kunde tydligen göra på båda sätten!
@@ -71,11 +77,6 @@ class LoginView {
 
 	 public function actionMessages($message){// fick lägga till mina if och else if satset här istället!
 
-	 		if(isset($_SESSION["Redirect"]) && $_SESSION["Redirect"] == true){//redirekterar mi till login efter succes!
-				$this->message = "Registered user!";
-				unset($_SESSION["Redirect"]);
-			}
-			else
 				$this->message = $message;//tom message
 		}
 
@@ -91,16 +92,19 @@ class LoginView {
 		
 		$response = "";//skapar bara en tom sträng
 
+		if(isset($_SESSION["Redirect"]) && $_SESSION["Redirect"] == true){//redirekterar mig till login efter succes!
+			$this->message = "Registered new user.";
+			unset($_SESSION["Redirect"]);
+		}
+
 		//else{
 		if($this->loginModel->checkLoginSession()){
 
 			$response = $this->generateLogoutButtonHTML($this->message);//anropar denna funktion om man nu lyckas logga in
 		}
 		else{
-
 			$response .= $this->generateLoginFormHTML($this->message);//failar man så kommer detta visas! igen!  
 		}
-	//}
 		return $response;
 	}
 

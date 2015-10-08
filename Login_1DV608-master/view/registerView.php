@@ -29,7 +29,7 @@
 			//denna kollar att man har rätt inlogingnsuppgifter!
 			if(isset($_POST[self::$register]))//kollar så att man skrivet i något i fälten!//
 			{
-				self::$previousName = $_POST[self::$regName];
+				self::$previousName = strip_tags($_POST[self::$regName]);
 				return true;
 			}
 		}
@@ -65,8 +65,6 @@
 		public function response() {
 		
 			$response = "";//skapar bara en tom sträng
-			//$response = $this->generateLinkBetweenSitesButton();
-			//$message = $this->loginModel->trylogingin($this->getUserName(), $this->getPassword());
 			if(isset($_GET["register"])){
 				$response .= $this->generateRegistrationFormHTML($this->message);
 			}
