@@ -8,3 +8,34 @@ static $SQLservername = "localhost";
 		static $SQLusername = "a3759003_RegName";
 		static $SQLpassword = "Register123";
 		static $SQLDatabase = "a3759003_Registr";*/
+
+
+//denna i register view för felmeddelanden!
+		/*
+		public function GetRegisterUser(){
+			try{
+				$userName = getRegName();
+				return new User($userName, $password);
+			}
+			catch(){
+				//set error
+			}
+			return null;
+		}
+		*/
+
+mastercontrollern!
+
+	//MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
+	// error_reporting(E_ALL);
+	// ini_set('display_errors', 'On');
+	  
+
+
+
+
+register controll
+				//$newUser = $this->regView->GetRegisterUser();
+				//if($newUser !== null){
+					//$this->regModel->tryRegistration($newUser);
+				//}

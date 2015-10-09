@@ -14,7 +14,7 @@
 		public static $fullPassword;
 
 
-		public function __construct($userDAL)//
+		public function __construct($userDAL)//skapar en session med login
 		{
 			$this->userDAL = $userDAL;
 			if(!isset($_SESSION['isLoginSession']))
@@ -51,7 +51,7 @@
 				else{
 
 					$_SESSION['isLoginSession'] = true;
-					$_SESSION['userprofile'] = $user;
+					$_SESSION['userprofile'] = $user;//lägger in user i en session!
 				}
 			}
 		}

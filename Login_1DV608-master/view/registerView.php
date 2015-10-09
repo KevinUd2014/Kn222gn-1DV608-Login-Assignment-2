@@ -12,18 +12,7 @@
 		private static $regRePassword = "RegisterView::PasswordRepeat";
 		private static $previousName;
 
-		/*
-		public function GetRegisterUser(){
-			try{
-				$userName = getRegName();
-				return new User($userName, $password);
-			}
-			catch(){
-				//set error
-			}
-			return null;
-		}
-		*/
+
 		public function checkUserRegisterPost(){
 
 			//denna kollar att man har rätt inlogingnsuppgifter!

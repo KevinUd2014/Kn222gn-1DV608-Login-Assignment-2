@@ -15,10 +15,6 @@
 
 			if($this->regView->checkUserRegisterPost())//om användaren postar i view så ska denna köras!
 			{
-				//$newUser = $this->regView->GetRegisterUser();
-				//if($newUser !== null){
-					//$this->regModel->tryRegistration($newUser);
-				//}
 				try{
 
 					$this->regUsername = $this->regView->getRegName();//hämtar användarnamnet och lägger in i denna variabel

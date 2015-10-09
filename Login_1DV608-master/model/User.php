@@ -7,9 +7,9 @@ class User{
 
 	//private $dal;
 
-	private $giveMeSomeSalt = "MayIHaveSomeSaltPLEASE??";
-	private $salt2 = "heheh?";
-	private $salt3 = "?!Youwillneverfindout";
+	private $giveMeSomeSalt = "MayIHaveSomeSaltPLEASE??";//salt som borde ligga i Settings 
+	private $salt2 = "heheh?";//salt som borde ligga i Settings 
+	private $salt3 = "?!Youwillneverfindout";//salt som borde ligga i Settings 
 
 	public function __construct($uname,$pword = null)
 	{
@@ -27,7 +27,7 @@ class User{
 		$this->password = $password;
 	}
 
-	public function GetPasswordHash(){
+	public function GetPasswordHash(){//hämtar lösenordet!
 		return $this->password;
 	}
 

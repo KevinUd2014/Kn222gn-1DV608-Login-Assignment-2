@@ -17,7 +17,7 @@
 
 			$this->usernameInput = trim($Username);// dessa två kommer ta bort alla onödiga blankspace osv. ifårn mina strängar!
 			$this->userPasswordInput = trim($Password);
-			$this->reEnterPassword = trim($reEnterPass);//
+			$this->reEnterPassword = trim($reEnterPass);
 
 			$message = "";
 
@@ -29,7 +29,7 @@
  				
 			 	$message .= ("Password has too few characters, at least 6 characters.<br>");
 			}
-			if ($message != "")
+			if ($message != "")//går in i denna om nu message har något att skriva ut!
 			{
 				throw new EXCEPTION($message);
 			}
@@ -37,7 +37,7 @@
  				
 			 	throw new EXCEPTION ("Passwords do not match.");
 			}
-			else if (preg_match("/^[A-Za-z0-9]+$/",$this->usernameInput) != 1)
+			else if (preg_match("/^[A-Za-z0-9]+$/",$this->usernameInput) != 1)//kommer kolla alla otillåtna tecken!
 			{
 				throw new EXCEPTION ("Username contains invalid characters.");
 			}

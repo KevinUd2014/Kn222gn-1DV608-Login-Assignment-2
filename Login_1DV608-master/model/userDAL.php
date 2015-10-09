@@ -9,7 +9,7 @@ class userDAL{
 		
 
 		// Create connection
-		$this->conn = mysqli_connect(Settings::$SQLservername, Settings::$SQLusername, Settings::$SQLpassword, Settings::$SQLDatabase);
+		$this->conn = mysqli_connect(Settings::$SQLservername, Settings::$SQLusername, Settings::$SQLpassword, Settings::$SQLDatabase);//hämtar från settings!
 
 		if (!$this->conn) {
 
@@ -47,7 +47,7 @@ class userDAL{
 
 		return true;
 	}
-	public function getByUsername($username){
+	public function getByUsername($username){//hämtar användaren!
 
 		$connect = $this->createSqlConnection();
 
