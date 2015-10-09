@@ -10,8 +10,8 @@
 		private $actionMessage;
 		private $userDAL;
 
-		public static $fullUserName = "Admin";
-		public static $fullPassword = "Password";
+		public static $fullUserName;
+		public static $fullPassword;
 
 
 		public function __construct($userDAL)//
