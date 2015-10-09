@@ -1,0 +1,10 @@
+static $SQLservername = "localhost";
+		static $SQLusername = "Register";
+		static $SQLpassword = "Register123";
+		static $SQLDatabase = "Register";
+
+		//server SQL
+		/*static $SQLservername = "mysql8.000webhost.com";
+		static $SQLusername = "a3759003_RegName";
+		static $SQLpassword = "Register123";
+		static $SQLDatabase = "a3759003_Registr";*/

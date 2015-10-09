@@ -3,8 +3,8 @@
 	class Settings{
 
 		//server SQL
-		static $SQLservername = "";//server namnet
-		static $SQLusername = "";//användarnamnet
-		static $SQLpassword = "";//lösenordet
-		static $SQLDatabase = "";//databasens namn
+		static $SQLservername = "";
+		static $SQLusername = "";
+		static $SQLpassword = "";
+		static $SQLDatabase = "";
 	}
