@@ -1,7 +1,7 @@
 Instructions to run my Application
 
 1. Download my repository.
-2. Create a new database, (Don't create a table with the same name as the database)
+2. Create a new database, (Don't create a Database with the same name as the Table "Register")
 3. Enter this SQL command to create the tables you need:
   
   CREATE TABLE `Register` (
