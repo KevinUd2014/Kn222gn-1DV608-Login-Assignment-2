@@ -34,8 +34,8 @@ class userDAL{
 		$this->userPasswordInput = $this->hash($usernameInput, $passwordInput);
 		*/
 
-		$sqlQuery = "INSERT INTO `register`.`register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
-		//$sqlQuery = "INSERT INTO `Register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
+		//$sqlQuery = "INSERT INTO `register`.`register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
+		$sqlQuery = "INSERT INTO `Register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
 		$connResult = $connect->query($sqlQuery);
 
 		$this->closeSqlConnection();

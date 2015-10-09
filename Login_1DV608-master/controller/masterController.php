@@ -41,7 +41,8 @@ class masterController
 			$rc->tryRegisterUser();
 
 			if(isset($_SESSION["Redirect"]) && $_SESSION["Redirect"] == true){//redirekterar mi till login efter succes!
-				header("Location: ?");
+				$Login = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+				header("Location:$Login");
 			}
 		}
 		else
