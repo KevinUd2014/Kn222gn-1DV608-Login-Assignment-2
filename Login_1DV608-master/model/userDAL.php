@@ -1,23 +1,15 @@
 <?php
 
+require_once("Settings.php");
+
 class userDAL{
 	private $conn;
 
 	public function createSqlConnection(){
-		//local SQL
-		/*$SQLservername = "localhost";
-		$SQLusername = "Register";
-		$SQLpassword = "Register123";
-		$SQLDatabase = "Register";*/
-
-		//server SQL
-		$SQLservername = "mysql8.000webhost.com";
-		$SQLusername = "a3759003_RegName";
-		$SQLpassword = "Register123";
-		$SQLDatabase = "a3759003_Registr";
+		
 
 		// Create connection
-		$this->conn = mysqli_connect($SQLservername, $SQLusername,$SQLpassword, $SQLDatabase);
+		$this->conn = mysqli_connect(Settings::$SQLservername, Settings::$SQLusername, Settings::$SQLpassword, Settings::$SQLDatabase);
 
 		if (!$this->conn) {
 
@@ -42,8 +34,8 @@ class userDAL{
 		$this->userPasswordInput = $this->hash($usernameInput, $passwordInput);
 		*/
 
-		//$sqlQuery = "INSERT INTO `register`.`register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
-		$sqlQuery = "INSERT INTO `Register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
+		$sqlQuery = "INSERT INTO `register`.`register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
+		//$sqlQuery = "INSERT INTO `Register` (`Username`, `Password`) VALUES ('$usernameInput', '$passwordInput')";
 		$connResult = $connect->query($sqlQuery);
 
 		$this->closeSqlConnection();
