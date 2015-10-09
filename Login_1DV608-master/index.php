@@ -1,5 +1,5 @@
 <?php
-
+//
 	require_once("controller/masterController.php");
 
 	$masterController = new masterController();

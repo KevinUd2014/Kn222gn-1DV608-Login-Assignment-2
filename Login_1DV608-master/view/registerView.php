@@ -1,4 +1,6 @@
 <?php
+
+//
 	class registerView{
 
 		private static $messageId = 'RegisterView::Message';

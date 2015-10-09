@@ -4,7 +4,7 @@
 		
 		//ska anropa modelen och få tilbaka svar som i sin tur skickas till view!
 
-		private $loginUserName;
+		private $loginUserName;//
 		private $password;
 		private $viewLogin;
 		private $modelLogin;

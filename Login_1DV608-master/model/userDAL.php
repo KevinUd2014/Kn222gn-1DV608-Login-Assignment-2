@@ -1,6 +1,6 @@
 <?php
 
-require_once("Settings.php");
+require_once("Settings.php");//
 
 class userDAL{
 	private $conn;

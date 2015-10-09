@@ -1,5 +1,5 @@
 <?php
-	require_once("model/User.php");
+	require_once("model/User.php");//
 	require_once("view/registerView.php");
 	class RegistrationModel{
 
