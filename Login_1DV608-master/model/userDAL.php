@@ -25,8 +25,9 @@ class userDAL{
 		mysqli_close($this->conn);
 	}
 
-	public function putUserInDatabase($usernameInput, $passwordInput){
-
+	public function putUserInDatabase($user){
+		$usernameInput = $user->GetUsername();
+		$passwordInput = $user->GetPasswordHash();
 		$connect = $this->createSqlConnection();
 
 		/*
@@ -63,7 +64,8 @@ class userDAL{
 		if ($row == NULL)//om användarnamnet är null så returnerar det null!
 			return null;
 
-		$user = new User($row["Username"], $row["Password"]);
+		$user = new User($row["Username"]);
+		$user->SetHashedPassword($row["Password"]);
 
 		return $user;
 	}

@@ -2,8 +2,8 @@
 
 	class Settings{
 		//server SQL
-		static $SQLservername = "";//sql servernamnet
-		static $SQLusername = "";//slq användarnamnet
-		static $SQLpassword = "";//sql lösenordet
-		static $SQLDatabase = "";//sql databasens namn
+		static $SQLservername = "localhost";//sql servernamnet
+		static $SQLusername = "Register";//slq användarnamnet
+		static $SQLpassword = "Register123";//sql lösenordet
+		static $SQLDatabase = "Register";//sql databasens namn
 	}

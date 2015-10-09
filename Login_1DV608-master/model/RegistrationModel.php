@@ -41,7 +41,10 @@
 			{
 				throw new EXCEPTION ("Username contains invalid characters.");
 			}
-			$_SESSION["Redirect"] = $this->userDAL->putUserInDatabase($Username, $Password);//redirektar till login när man reggaar sig
+
+			$user = new User($this->usernameInput, $this->userPasswordInput);
+
+			$_SESSION["Redirect"] = $this->userDAL->putUserInDatabase($user);//redirektar till login när man reggaar sig
 			$_SESSION["RedirektUsername"] = $this->registerView->getRegName();//kommer spara namnet man reggar i view!
 	}
 }
