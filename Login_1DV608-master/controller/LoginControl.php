@@ -1,5 +1,5 @@
 <?php
-
+//
 	class LoginControl{
 		
 		//ska anropa modelen och få tilbaka svar som i sin tur skickas till view!

@@ -1,13 +1,13 @@
 <?php
 session_start();
-//chdir("../");
+
 require_once('view/LoginView.php');
 require_once('view/DateTimeView.php');
 require_once('view/LayoutView.php');
 require_once('view/registerView.php');
 require_once('model/LoginModelNew.php');
 require_once('controller/LoginControl.php');
-require_once('controller/registerControl.php');//
+require_once('controller/registerControl.php');
 require_once("model/RegistrationModel.php");
 require_once("model/userDAL.php");
 

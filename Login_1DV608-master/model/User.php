@@ -1,5 +1,5 @@
 <?php
-require_once("userDAL.php");//
+require_once("userDAL.php");
 class User{
 
 	private $username;

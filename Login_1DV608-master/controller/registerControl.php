@@ -2,7 +2,7 @@
 
 	class registerControl{
 
-		private $regModel;//
+		private $regModel;
 		private $regView;
 
 		public function __construct(RegistrationModel $regModel, registerView $regView){
